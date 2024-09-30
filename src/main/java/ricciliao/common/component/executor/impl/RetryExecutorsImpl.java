@@ -25,7 +25,7 @@ public class RetryExecutorsImpl implements RetryExecutors {
                 throw new ServiceException(t);
             }
             if (Objects.isNull(retrySelector) || !retrySelector.retry(retrySelector, retryResult, retryMeta)) {
-                if(Objects.nonNull(retryResult.getException())){
+                if (Objects.nonNull(retryResult.getException())) {
                     throw retryResult.getException();
                 }
 
