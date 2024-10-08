@@ -1,21 +1,10 @@
 package ricciliao.common.component.exception;
 
 public class RecordException extends CmnException {
+    private static final long serialVersionUID = -6069708940719558764L;
 
     public RecordException() {
         super();
-    }
-
-    public RecordException(String message) {
-        super(message);
-    }
-
-    public RecordException(int responseCode) {
-        super(responseCode);
-    }
-
-    public RecordException(int responseCode, String responseMessage) {
-        super(responseCode, responseMessage);
     }
 
 }

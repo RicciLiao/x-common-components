@@ -1,8 +1,10 @@
 package ricciliao.common.component.exception;
 
 import ricciliao.common.component.response.ResponseCode;
+import ricciliao.common.component.response.ResponseVoCode;
 
 public class CmnException extends Exception {
+    private static final long serialVersionUID = 486238316705445980L;
 
     private final long code;
     private final String message;
@@ -13,21 +15,9 @@ public class CmnException extends Exception {
         this.message = ResponseCode.CommonCode.SYSTEM_ERROR.getMessage();
     }
 
-    public CmnException(int code) {
-        this.code = code;
-        this.message = "";
-    }
-
-    public CmnException(String message) {
-        super(message);
-        this.code = 1;
-        this.message = message;
-    }
-
-    public CmnException(int code, String message) {
-        super(message);
-        this.code = code;
-        this.message = message;
+    public CmnException(ResponseVoCode voCode) {
+        this.code = voCode.getCode();
+        this.message = voCode.getMessage();
     }
 
     public long getCode() {

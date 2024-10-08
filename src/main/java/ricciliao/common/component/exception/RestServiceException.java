@@ -1,21 +1,10 @@
 package ricciliao.common.component.exception;
 
 public class RestServiceException extends CmnException {
+    private static final long serialVersionUID = 5362552358311799141L;
 
     public RestServiceException() {
         super();
-    }
-
-    public RestServiceException(String message) {
-        super(message);
-    }
-
-    public RestServiceException(int responseCode) {
-        super(responseCode);
-    }
-
-    public RestServiceException(int responseCode, String responseMessage) {
-        super(responseCode, responseMessage);
     }
 
 }

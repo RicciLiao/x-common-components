@@ -1,21 +1,10 @@
 package ricciliao.common.component.exception;
 
 public class ConcurrentException extends CmnException {
+    private static final long serialVersionUID = -6404768982745779640L;
 
     public ConcurrentException() {
         super();
-    }
-
-    public ConcurrentException(String message) {
-        super(message);
-    }
-
-    public ConcurrentException(int responseCode) {
-        super(responseCode);
-    }
-
-    public ConcurrentException(int responseCode, String responseMessage) {
-        super(responseCode, responseMessage);
     }
 
 }

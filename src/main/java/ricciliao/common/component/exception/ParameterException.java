@@ -1,56 +1,34 @@
 package ricciliao.common.component.exception;
 
 import ricciliao.common.component.response.FieldViolationData;
+import ricciliao.common.component.response.ResponseVoCode;
 
 import java.util.Collections;
 import java.util.List;
 
 public class ParameterException extends CmnException {
+    private static final long serialVersionUID = -6737562056794016208L;
 
     private final boolean fieldViolation;
     private final List<FieldViolationData> fieldViolationList;
 
     public ParameterException() {
         super();
-        fieldViolation = false;
-        fieldViolationList = Collections.emptyList();
+        this.fieldViolation = false;
+        this.fieldViolationList = Collections.emptyList();
     }
 
-    public ParameterException(int responseCode) {
-        super(responseCode);
-        fieldViolation = false;
-        fieldViolationList = Collections.emptyList();
-    }
-
-    public ParameterException(String message) {
-        super(message);
-        fieldViolation = false;
-        fieldViolationList = Collections.emptyList();
-    }
-
-    public ParameterException(int responseCode, String message) {
-        super(responseCode, message);
-        fieldViolation = false;
-        fieldViolationList = Collections.emptyList();
-    }
-
-    public ParameterException(String message, boolean fieldViolation, List<FieldViolationData> fieldViolationList) {
-        super(message);
-        this.fieldViolation = fieldViolation;
-        this.fieldViolationList = fieldViolationList;
-    }
-
-    public ParameterException(int responseCode, String message, boolean fieldViolation, List<FieldViolationData> fieldViolationList) {
-        super(responseCode, message);
-        this.fieldViolation = fieldViolation;
+    public ParameterException(List<FieldViolationData> fieldViolationList, ResponseVoCode voCode) {
+        super(voCode);
+        this.fieldViolation = true;
         this.fieldViolationList = fieldViolationList;
     }
 
     public boolean fieldViolation() {
-        return fieldViolation;
+        return this.fieldViolation;
     }
 
     public List<FieldViolationData> getFieldViolationList() {
-        return fieldViolationList;
+        return this.fieldViolationList;
     }
 }
