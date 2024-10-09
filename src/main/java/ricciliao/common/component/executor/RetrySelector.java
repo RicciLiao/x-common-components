@@ -7,14 +7,19 @@ public interface RetrySelector<T> {
 
     boolean retry(RetryResult<T> r);
 
-    default boolean retry(RetrySelector<T> retrySelector, RetryResult<T> retryResult, RetryMeta retryMeta) throws InterruptedException {
+    default boolean retry(RetrySelector<T> retrySelector, RetryResult<T> retryResult, RetryMeta retryMeta) {
 
         if (Objects.nonNull(retryMeta)
                 && retryMeta.attempt++ <= retryMeta.maxAttempts
                 && retrySelector.retry(retryResult)) {
-            Thread.sleep(retryMeta.interval);
+            try {
+                Thread.sleep(retryMeta.interval);
 
-            return true;
+                return true;
+            } catch (InterruptedException e) {
+
+                Thread.currentThread().interrupt();
+            }
         }
 
         return false;

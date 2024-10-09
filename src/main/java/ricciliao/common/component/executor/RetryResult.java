@@ -1,11 +1,11 @@
 package ricciliao.common.component.executor;
 
-import java.io.Serializable;
+import ricciliao.common.component.exception.ServiceException;
 
-public class RetryResult<T> implements Serializable {
+public class RetryResult<T> {
 
     private T result;
-    private Exception exception;
+    private ServiceException serviceException;
 
     public T getResult() {
         return result;
@@ -15,16 +15,16 @@ public class RetryResult<T> implements Serializable {
         this.result = result;
     }
 
-    public Exception getException() {
-        return exception;
+    public ServiceException getServiceException() {
+        return serviceException;
     }
 
-    public void setException(Exception exception) {
-        this.exception = exception;
+    public void setServiceException(ServiceException serviceException) {
+        this.serviceException = serviceException;
     }
 
     public void clear() {
         this.result = null;
-        this.exception = null;
+        this.serviceException = null;
     }
 }

@@ -3,9 +3,9 @@ package ricciliao.common.component.exception;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class CmnExceptionUtil {
+public class CmnExceptionUtils {
 
-    private CmnExceptionUtil() {
+    private CmnExceptionUtils() {
         throw new IllegalStateException("Utility class");
     }
 
@@ -22,24 +22,12 @@ public class CmnExceptionUtil {
         }
         sbr.append(throwable.getClass().getName()).append(":");
         if (StringUtils.isNotBlank(throwable.getMessage())) {
-            sbr.append(enhanceExceptionMessage(throwable));
+            sbr.append(throwable.getMessage());
         }
         sbr.append(System.lineSeparator());
         for (StackTraceElement stackTraceElement : throwable.getStackTrace()) {
             sbr.append("\tat ").append(stackTraceElement.toString()).append(System.lineSeparator());
         }
-    }
-
-    private static String enhanceExceptionMessage(Throwable throwable) {
-        String original = throwable.getMessage();
-        /*if (throwable instanceof RestClientException
-                && original.toLowerCase().matches(AlsConstant.ALS_REST_CLIENT_EXCEPTION_MESSAGE_REGX)) {
-            String[] arr = original.split(" ");
-            HttpStatus httpStatus = HttpStatus.resolve(Integer.parseInt(arr[0]));
-            return httpStatus.value() + " " + httpStatus.getReasonPhrase();
-        }*/
-
-        return original;
     }
 
 }

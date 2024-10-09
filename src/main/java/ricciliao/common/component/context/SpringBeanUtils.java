@@ -1,5 +1,4 @@
-/*
-package ricciliao.common.component.util;
+package ricciliao.common.component.context;
 
 import org.springframework.context.ApplicationContext;
 
@@ -9,20 +8,20 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public class MoeSpringBeanUtil {
+public class SpringBeanUtils {
 
-    MoeSpringBeanUtil() {
+    SpringBeanUtils() {
         throw new IllegalStateException("Utility class");
     }
 
     private static ApplicationContext applicationContext;
 
     public static ApplicationContext getApplicationContext() {
-        return MoeSpringBeanUtil.applicationContext;
+        return SpringBeanUtils.applicationContext;
     }
 
     public static void setApplicationContext(ApplicationContext applicationContext) {
-        MoeSpringBeanUtil.applicationContext = applicationContext;
+        SpringBeanUtils.applicationContext = applicationContext;
     }
 
     public static <T> T getBean(Class<T> clazz) {
@@ -54,4 +53,3 @@ public class MoeSpringBeanUtil {
     }
 
 }
-*/

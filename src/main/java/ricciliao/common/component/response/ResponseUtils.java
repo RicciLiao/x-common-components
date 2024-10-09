@@ -5,9 +5,9 @@ import org.springframework.validation.BindingResult;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ResponseUtil {
+public class ResponseUtils {
 
-    private ResponseUtil() {
+    private ResponseUtils() {
         throw new IllegalStateException("Utility class");
     }
 
