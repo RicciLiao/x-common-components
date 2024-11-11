@@ -11,17 +11,17 @@ public enum CmnResponseCode implements ResponseVoCode {
     REST_ERROR(6, "Fail to call '%s'. Case by: %s"),
     ;
 
-    private final long code;
+    private final long id;
     private final String message;
 
     CmnResponseCode(long code, String message) {
-        this.code = code;
+        this.id = code;
         this.message = message;
     }
 
     @Override
     public long getId() {
-        return code;
+        return id;
     }
 
     @Override
