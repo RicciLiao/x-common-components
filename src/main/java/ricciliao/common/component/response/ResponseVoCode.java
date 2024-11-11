@@ -2,7 +2,7 @@ package ricciliao.common.component.response;
 
 public interface ResponseVoCode {
 
-    long getCode();
+    long getId();
 
     String getMessage();
 

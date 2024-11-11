@@ -10,7 +10,7 @@ public class ResponseBuilder<T extends ResponseVoData> {
     }
 
     public ResponseVo<T> build() {
-        return new ResponseVo<>(code.getCode(), code.getMessage(), data);
+        return new ResponseVo<>(code.getId(), code.getMessage(), data);
     }
 
     public ResponseBuilder<T> code(ResponseVoCode code) {

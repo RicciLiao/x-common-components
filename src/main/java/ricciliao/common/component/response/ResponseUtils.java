@@ -13,18 +13,23 @@ public class ResponseUtils {
 
     public static ResponseVo<ResponseEmptyData> successResponse() {
 
-        return builder(new ResponseEmptyData()).code(ResponseCode.CommonCode.SUCCESS).build();
+        return builder(new ResponseEmptyData()).code(CmnResponseCode.SUCCESS).build();
     }
 
 
     public static ResponseVo<ResponseEmptyData> errorResponse() {
 
-        return builder(new ResponseEmptyData()).code(ResponseCode.CommonCode.SYSTEM_ERROR).build();
+        return builder(new ResponseEmptyData()).code(CmnResponseCode.SYSTEM_ERROR).build();
     }
 
     public static <T extends ResponseVoData> ResponseVo<T> successResponse(T data) {
 
-        return builder(data).code(ResponseCode.CommonCode.SUCCESS).build();
+        return builder(data).code(CmnResponseCode.SUCCESS).build();
+    }
+
+    public static <T extends ResponseVoData> ResponseBuilder<ResponseEmptyData> builder() {
+
+        return new ResponseBuilder<>(new ResponseEmptyData());
     }
 
     public static <T extends ResponseVoData> ResponseBuilder<T> builder(T data) {
@@ -44,7 +49,7 @@ public class ResponseUtils {
                         data.getFieldErrors().stream()
                                 .map(fieldError -> new FieldViolationData(fieldError.getField(), fieldError.getDefaultMessage()))
                                 .collect(Collectors.toList()))
-        ).code(ResponseCode.CommonCode.PARAMETER_ERROR);
+        ).code(CmnResponseCode.PARAMETER_ERROR);
     }
 
 }
