@@ -2,7 +2,7 @@ package ricciliao.common.component.response;
 
 import java.util.Objects;
 
-public class ResponseVo<T extends ResponseVoData> {
+public class ResponseVo<T extends ResponseData> {
 
     public ResponseVo(Long code, String message, T data) {
         this.code = code;
@@ -20,6 +20,12 @@ public class ResponseVo<T extends ResponseVoData> {
         this.code = code;
         message = null;
         data = null;
+    }
+
+    protected ResponseVo() {
+        this.code = null;
+        this.message = null;
+        this.data = null;
     }
 
     private final Long code;

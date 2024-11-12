@@ -1,7 +1,7 @@
 package ricciliao.common.component.exception;
 
-import ricciliao.common.component.response.CmnResponseCode;
-import ricciliao.common.component.response.ResponseVoCode;
+import ricciliao.common.component.response.ResponseCode;
+import ricciliao.common.component.response.ResponseCodeEnum;
 
 import java.io.Serial;
 
@@ -9,14 +9,14 @@ public class CmnException extends Exception {
     @Serial
     private static final long serialVersionUID = 486238316705445980L;
 
-    private final ResponseVoCode code;
+    private final ResponseCode code;
 
     public CmnException() {
         super();
-        this.code = CmnResponseCode.SYSTEM_ERROR;
+        this.code = ResponseCodeEnum.SYSTEM_ERROR;
     }
 
-    public CmnException(ResponseVoCode code) {
+    public CmnException(ResponseCode code) {
         this.code = code;
     }
 
@@ -28,7 +28,7 @@ public class CmnException extends Exception {
         return code.getMessage();
     }
 
-    public ResponseVoCode getCode() {
+    public ResponseCode getCode() {
         return code;
     }
 }

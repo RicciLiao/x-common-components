@@ -1,6 +1,6 @@
 package ricciliao.common.component.response;
 
-public enum CmnResponseCode implements ResponseVoCode {
+public enum ResponseCodeEnum implements ResponseCode {
 
     SUCCESS(0, "Success."),
     TOKEN_EXPIRE_ERROR(1, "Token has expired, please log in again."),
@@ -14,7 +14,7 @@ public enum CmnResponseCode implements ResponseVoCode {
     private final long id;
     private final String message;
 
-    CmnResponseCode(long code, String message) {
+    ResponseCodeEnum(long code, String message) {
         this.id = code;
         this.message = message;
     }

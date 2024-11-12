@@ -16,9 +16,8 @@ public class CmnExceptionUtils {
     }
 
     private static void traceStack(StringBuilder sbr, Throwable throwable) {
-        if (throwable instanceof ServiceException
-                && ((ServiceException) throwable).getThrowable() != null) {
-            traceStack(sbr, ((ServiceException) throwable).getThrowable());
+        if (throwable instanceof CmnServiceException se) {
+            traceStack(sbr, se.getThrowable());
         }
         sbr.append(throwable.getClass().getName()).append(":");
         if (StringUtils.isNotBlank(throwable.getMessage())) {

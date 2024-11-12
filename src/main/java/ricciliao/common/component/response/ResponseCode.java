@@ -1,6 +1,8 @@
 package ricciliao.common.component.response;
 
-public interface ResponseVoCode {
+import java.io.Serializable;
+
+public interface ResponseCode extends Serializable {
 
     long getId();
 

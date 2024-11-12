@@ -1,4 +1,4 @@
-package ricciliao.common.component.utils;
+package ricciliao.common.component.random;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -10,9 +10,9 @@ public class RandomStringGenerator {
     private final Builder builder;
     private final SecureRandom random;
 
-    public static String LETTER_UPPER_POOL = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    public static String LETTER_LOWER_POOL = "abcdefghijklmnopqrstuvwxyz";
-    public static String DIGIT_POOL = "0123456789";
+    private static final String LETTER_UPPER_POOL = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String LETTER_LOWER_POOL = "abcdefghijklmnopqrstuvwxyz";
+    private static final String DIGIT_POOL = "0123456789";
 
     private String letterUpperPool = LETTER_UPPER_POOL;
     private String letterLowerPool = LETTER_LOWER_POOL;
@@ -24,15 +24,15 @@ public class RandomStringGenerator {
         if (builder.clear) {
             this.letterUpperPool =
                     LETTER_UPPER_POOL
-                            .replaceAll("L", "").replaceAll("O", "")
-                            .replaceAll("I", "").replaceAll("O", "");
+                            .replace("L", "").replace("O", "")
+                            .replace("I", "").replace("O", "");
             this.letterLowerPool =
                     LETTER_LOWER_POOL
-                            .replaceAll("l", "").replaceAll("o", "")
-                            .replaceAll("i", "").replaceAll("o", "");
+                            .replace("l", "").replace("o", "")
+                            .replace("i", "").replace("o", "");
             this.digitPool =
                     DIGIT_POOL
-                            .replaceAll("1", "").replaceAll("0", "");
+                            .replace("1", "").replace("0", "");
         }
     }
 
@@ -75,7 +75,7 @@ public class RandomStringGenerator {
         return new Builder(length);
     }
 
-    public final static class Builder {
+    public static final class Builder {
         private boolean clear = false;
         private final int length;
         private int atLeastLetter = 0;
@@ -113,6 +113,14 @@ public class RandomStringGenerator {
 
         public Builder clear(boolean clear) {
             this.clear = clear;
+
+            return this;
+        }
+
+        public Builder allAtLeast(int i) {
+            this.atLeastUpperLetter = i;
+            this.atLeastLowerLetter = i;
+            this.atLeastDigit = i;
 
             return this;
         }

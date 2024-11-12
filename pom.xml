@@ -47,6 +47,10 @@
             <artifactId>jackson-dataformat-yaml</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>ricciliao</groupId>
+            <artifactId>dynamic-aop</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

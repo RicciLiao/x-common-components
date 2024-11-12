@@ -1,6 +1,6 @@
 package ricciliao.common.component.exception;
 
-import ricciliao.common.component.response.ResponseVoCode;
+import ricciliao.common.component.response.ResponseCode;
 
 import java.io.Serial;
 
@@ -12,7 +12,7 @@ public class ConcurrentException extends CmnException {
         super();
     }
 
-    public ConcurrentException(ResponseVoCode code) {
+    public ConcurrentException(ResponseCode code) {
         super(code);
     }
 }

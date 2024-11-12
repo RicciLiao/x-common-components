@@ -1,18 +1,18 @@
 package ricciliao.common.component.exception;
 
-import ricciliao.common.component.response.ResponseVoCode;
+import ricciliao.common.component.response.ResponseCode;
 
 import java.io.Serial;
 
-public class RestServiceException extends CmnException {
+public class CmnRestException extends CmnException {
     @Serial
     private static final long serialVersionUID = 5362552358311799141L;
 
-    public RestServiceException() {
+    public CmnRestException() {
         super();
     }
 
-    public RestServiceException(ResponseVoCode code) {
+    public CmnRestException(ResponseCode code) {
         super(code);
     }
 }

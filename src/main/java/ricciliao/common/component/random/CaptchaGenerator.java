@@ -1,7 +1,7 @@
-package ricciliao.common.component.utils;
+package ricciliao.common.component.random;
 
 import ricciliao.common.component.exception.CmnException;
-import ricciliao.common.component.exception.ServiceException;
+import ricciliao.common.component.exception.CmnServiceException;
 
 import javax.imageio.ImageIO;
 import java.awt.Color;
@@ -10,6 +10,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Random;
 
@@ -28,7 +29,7 @@ public class CaptchaGenerator {
         // font style
         graphics.setFont(new Font("Arial", Font.BOLD, 25));
         // lines
-        Random random = new Random();
+        Random random = new SecureRandom();
         for (int i = 0; i < 10; i++) {
             int x1 = random.nextInt(WIDTH);
             int y1 = random.nextInt(HEIGHT);
@@ -51,7 +52,7 @@ public class CaptchaGenerator {
             imageBytes = b.toByteArray();
         } catch (IOException e) {
 
-            throw new ServiceException(e);
+            throw new CmnServiceException(e);
         }
 
         return new CaptchaResult(captchaCode, Base64.getEncoder().encodeToString(imageBytes));

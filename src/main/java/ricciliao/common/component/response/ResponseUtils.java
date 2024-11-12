@@ -3,7 +3,6 @@ package ricciliao.common.component.response;
 import org.springframework.validation.BindingResult;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ResponseUtils {
 
@@ -13,31 +12,30 @@ public class ResponseUtils {
 
     public static ResponseVo<ResponseEmptyData> successResponse() {
 
-        return builder(new ResponseEmptyData()).code(CmnResponseCode.SUCCESS).build();
+        return builder(new ResponseEmptyData()).code(ResponseCodeEnum.SUCCESS).build();
     }
-
 
     public static ResponseVo<ResponseEmptyData> errorResponse() {
 
-        return builder(new ResponseEmptyData()).code(CmnResponseCode.SYSTEM_ERROR).build();
+        return builder(new ResponseEmptyData()).code(ResponseCodeEnum.SYSTEM_ERROR).build();
     }
 
-    public static <T extends ResponseVoData> ResponseVo<T> successResponse(T data) {
+    public static <T extends ResponseData> ResponseVo<T> successResponse(T data) {
 
-        return builder(data).code(CmnResponseCode.SUCCESS).build();
+        return builder(data).code(ResponseCodeEnum.SUCCESS).build();
     }
 
-    public static <T extends ResponseVoData> ResponseBuilder<ResponseEmptyData> builder() {
+    public static ResponseBuilder<ResponseEmptyData> builder() {
 
         return new ResponseBuilder<>(new ResponseEmptyData());
     }
 
-    public static <T extends ResponseVoData> ResponseBuilder<T> builder(T data) {
+    public static <T extends ResponseData> ResponseBuilder<T> builder(T data) {
 
         return new ResponseBuilder<>(data);
     }
 
-    public static ResponseBuilder<ResponseFieldViolationData> builder(List<FieldViolationData> data) {
+    public static ResponseBuilder<ResponseFieldViolationData> builder(List<ResponseFieldViolation> data) {
 
         return new ResponseBuilder<>(new ResponseFieldViolationData(data));
     }
@@ -47,9 +45,9 @@ public class ResponseUtils {
         return new ResponseBuilder<>(
                 new ResponseFieldViolationData(
                         data.getFieldErrors().stream()
-                                .map(fieldError -> new FieldViolationData(fieldError.getField(), fieldError.getDefaultMessage()))
-                                .collect(Collectors.toList()))
-        ).code(CmnResponseCode.PARAMETER_ERROR);
+                                .map(fieldError -> new ResponseFieldViolation(fieldError.getField(), fieldError.getDefaultMessage()))
+                                .toList())
+        ).code(ResponseCodeEnum.PARAMETER_ERROR);
     }
 
 }
