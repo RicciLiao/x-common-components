@@ -10,39 +10,39 @@ public class ResponseUtils {
         throw new IllegalStateException("Utility class");
     }
 
-    public static ResponseVo<ResponseEmptyData> successResponse() {
+    public static ResponseVo<ResponseData> successResponse() {
 
         return builder(new ResponseEmptyData()).code(ResponseCodeEnum.SUCCESS).build();
     }
 
-    public static ResponseVo<ResponseEmptyData> errorResponse() {
+    public static ResponseVo<ResponseData> errorResponse() {
 
         return builder(new ResponseEmptyData()).code(ResponseCodeEnum.SYSTEM_ERROR).build();
     }
 
-    public static <T extends ResponseData> ResponseVo<T> successResponse(T data) {
+    public static ResponseVo<ResponseData> successResponse(ResponseData data) {
 
         return builder(data).code(ResponseCodeEnum.SUCCESS).build();
     }
 
-    public static ResponseBuilder<ResponseEmptyData> builder() {
+    public static ResponseBuilder builder() {
 
-        return new ResponseBuilder<>(new ResponseEmptyData());
+        return new ResponseBuilder(new ResponseEmptyData());
     }
 
-    public static <T extends ResponseData> ResponseBuilder<T> builder(T data) {
+    public static ResponseBuilder builder(ResponseData data) {
 
-        return new ResponseBuilder<>(data);
+        return new ResponseBuilder(data);
     }
 
-    public static ResponseBuilder<ResponseFieldViolationData> builder(List<ResponseFieldViolation> data) {
+    public static ResponseBuilder builder(List<ResponseFieldViolation> data) {
 
-        return new ResponseBuilder<>(new ResponseFieldViolationData(data));
+        return new ResponseBuilder(new ResponseFieldViolationData(data));
     }
 
-    public static ResponseBuilder<ResponseFieldViolationData> builder(BindingResult data) {
+    public static ResponseBuilder builder(BindingResult data) {
 
-        return new ResponseBuilder<>(
+        return new ResponseBuilder(
                 new ResponseFieldViolationData(
                         data.getFieldErrors().stream()
                                 .map(fieldError -> new ResponseFieldViolation(fieldError.getField(), fieldError.getDefaultMessage()))
