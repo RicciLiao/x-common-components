@@ -20,15 +20,13 @@ public class CmnException extends Exception {
         this.code = code;
     }
 
-    public long getCodeId() {
-        return code.getId();
-    }
-
-    public String getCodeMessage() {
-        return code.getMessage();
-    }
-
     public ResponseCode getCode() {
         return code;
+    }
+
+    @Override
+    public String getMessage() {
+
+        return code.getMessage();
     }
 }
