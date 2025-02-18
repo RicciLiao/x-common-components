@@ -3,7 +3,7 @@ package ricciliao.common.component.serialisation;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import ricciliao.common.component.utils.CommonHelper;
+import ricciliao.common.component.utils.CoreUtils;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -13,7 +13,7 @@ public class LocalDateTime2TimestampSerializer extends JsonSerializer<LocalDateT
 
     @Override
     public void serialize(LocalDateTime localDateTime, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-        Long timestamp = CommonHelper.toLong(localDateTime);
+        Long timestamp = CoreUtils.toLong(localDateTime);
         if (Objects.nonNull(timestamp)) {
             jsonGenerator.writeNumber(timestamp);
         }

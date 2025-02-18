@@ -7,9 +7,9 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Objects;
 
-public class CommonHelper {
+public class CoreUtils {
 
-    private CommonHelper() {
+    private CoreUtils() {
         throw new IllegalStateException("Utility class");
     }
 
@@ -24,14 +24,14 @@ public class CommonHelper {
     }
 
     public static LocalDate toLocalDate(Long milliseconds) {
-        LocalDateTime localDateTime = CommonHelper.toLocalDateTime(milliseconds);
+        LocalDateTime localDateTime = CoreUtils.toLocalDateTime(milliseconds);
 
         return Objects.isNull(localDateTime) ? null : localDateTime.toLocalDate();
     }
 
     public static Long toLong(LocalDate localDate) {
 
-        return Objects.isNull(localDate) ? null : CommonHelper.toLong(localDate.atTime(LocalTime.MIN));
+        return Objects.isNull(localDate) ? null : CoreUtils.toLong(localDate.atTime(LocalTime.MIN));
     }
 
     public static Integer toInteger(Boolean b) {

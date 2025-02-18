@@ -1,4 +1,4 @@
-package ricciliao.common.component.cache;
+package ricciliao.common.component.cache.consumer;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,9 +10,11 @@ import org.springframework.http.converter.AbstractHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.lang.NonNull;
+import ricciliao.common.component.cache.CacheConstants;
 import ricciliao.common.component.cache.pojo.ConsumerIdentifierDto;
 import ricciliao.common.component.cache.pojo.ConsumerOperationDto;
 import ricciliao.common.component.cache.pojo.CacheDto;
+import ricciliao.common.component.cache.provider.CacheProviderSelector;
 import ricciliao.common.component.exception.CmnParameterException;
 
 import java.io.IOException;
@@ -23,12 +25,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class ConsumeOperationDtoConverter extends AbstractHttpMessageConverter<ConsumerOperationDto<? extends CacheDto>> {
+public class ConsumerOperationDtoConverter extends AbstractHttpMessageConverter<ConsumerOperationDto<? extends CacheDto>> {
 
     private final ObjectMapper objectMapper;
     private final CacheProviderSelector cacheProvider;
 
-    public ConsumeOperationDtoConverter(ObjectMapper objectMapper, CacheProviderSelector cacheProvider) {
+    public ConsumerOperationDtoConverter(ObjectMapper objectMapper, CacheProviderSelector cacheProvider) {
         super(MediaType.APPLICATION_JSON);
         this.objectMapper = objectMapper;
         this.cacheProvider = cacheProvider;
@@ -51,8 +53,8 @@ public class ConsumeOperationDtoConverter extends AbstractHttpMessageConverter<C
             throw new HttpMessageNotReadableException("missing @interface " + ConsumerData.class.getSimpleName(), inputMessage);
         }
         try {
-            List<String> customer = inputMessage.getHeaders().get(Constants.HTTP_HEADER_FOR_CACHE_CUSTOMER);
-            List<String> store = inputMessage.getHeaders().get(Constants.HTTP_HEADER_FOR_CACHE_STORE);
+            List<String> customer = inputMessage.getHeaders().get(CacheConstants.HTTP_HEADER_FOR_CACHE_CUSTOMER);
+            List<String> store = inputMessage.getHeaders().get(CacheConstants.HTTP_HEADER_FOR_CACHE_STORE);
             if (CollectionUtils.isEmpty(customer) || customer.size() > 1
                     || CollectionUtils.isEmpty(store) || store.size() > 1) {
 

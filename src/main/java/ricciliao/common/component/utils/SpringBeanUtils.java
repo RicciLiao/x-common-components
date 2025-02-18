@@ -1,4 +1,4 @@
-package ricciliao.common.component.context;
+package ricciliao.common.component.utils;
 
 import org.springframework.context.ApplicationContext;
 

@@ -1,6 +1,6 @@
 package ricciliao.common.component.cache.pojo;
 
-import ricciliao.common.component.cache.ConsumerData;
+import ricciliao.common.component.cache.consumer.ConsumerData;
 import ricciliao.common.component.response.ResponseData;
 
 import java.io.Serial;

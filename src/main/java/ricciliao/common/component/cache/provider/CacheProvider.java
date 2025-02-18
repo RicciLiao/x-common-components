@@ -1,4 +1,4 @@
-package ricciliao.common.component.cache;
+package ricciliao.common.component.cache.provider;
 
 import ricciliao.common.component.cache.pojo.ConsumerOperationDto;
 import ricciliao.common.component.cache.pojo.CacheDto;
