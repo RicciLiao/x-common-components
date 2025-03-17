@@ -8,10 +8,11 @@
         <version>1.0.0</version>
     </parent>
 
+    <groupId>ricciliao.x</groupId>
     <artifactId>common-components</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>common-components</name>
+    <name>x-common-components</name>
     <description>Common components for Sprint Framework</description>
 
     <properties>
@@ -66,10 +67,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>ricciliao</groupId>
-            <artifactId>dynamic-aop</artifactId>
         </dependency>
     </dependencies>
 
