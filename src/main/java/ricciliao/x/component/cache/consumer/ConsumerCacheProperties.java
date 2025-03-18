@@ -1,15 +1,18 @@
 package ricciliao.x.component.cache.consumer;
 
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.http.HttpMethod;
+import ricciliao.x.component.cache.pojo.CacheDto;
+import ricciliao.x.component.props.ApplicationProperties;
 import ricciliao.x.component.rest.RestPathProperties;
 
-@ConfigurationProperties(prefix = "cache-consumer")
-public class ConsumerCacheProperties {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ConsumerCacheProperties extends ApplicationProperties {
 
     private String consumer;
-    private OperationProperties operation = new OperationProperties();
+    private List<OperationProperties> operationList = new ArrayList<>();
 
     public String getConsumer() {
         return consumer;
@@ -19,20 +22,38 @@ public class ConsumerCacheProperties {
         this.consumer = consumer;
     }
 
-    public OperationProperties getOperation() {
-        return operation;
+    public List<OperationProperties> getOperationList() {
+        return operationList;
     }
 
-    public void setOperation(OperationProperties operation) {
-        this.operation = operation;
+    public void setOperationList(List<OperationProperties> operationList) {
+        this.operationList = operationList;
     }
 
     public static class OperationProperties {
 
+        private String store;
+        private Class<? extends CacheDto> storeClassName;
         private CacheRestPathProperties create = new CacheRestPathProperties("http://localhost:8083/operation", HttpMethod.POST);
         private CacheRestPathProperties update = new CacheRestPathProperties("http://localhost:8083/operation", HttpMethod.PUT);
         private CacheRestPathProperties delete = new CacheRestPathProperties("http://localhost:8083/operation/{id}", HttpMethod.DELETE);
         private CacheRestPathProperties retrieve = new CacheRestPathProperties("http://localhost:8083/operation/{id}", HttpMethod.GET);
+
+        public String getStore() {
+            return store;
+        }
+
+        public void setStore(String store) {
+            this.store = store;
+        }
+
+        public Class<? extends CacheDto> getStoreClassName() {
+            return storeClassName;
+        }
+
+        public void setStoreClassName(Class<? extends CacheDto> storeClassName) {
+            this.storeClassName = storeClassName;
+        }
 
         public CacheRestPathProperties getCreate() {
             return create;
