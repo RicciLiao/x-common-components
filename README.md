@@ -1,3 +1,3 @@
-# common-components
+# X-Component
 
-Some common components or functions.
+## *Common-Components `🚀️ V1.0.0`*
