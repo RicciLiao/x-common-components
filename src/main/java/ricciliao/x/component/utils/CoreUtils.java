@@ -52,21 +52,4 @@ public class CoreUtils {
         return Objects.isNull(localDate) ? null : CoreUtils.toLong(localDate.atTime(LocalTime.MIN));
     }
 
-    public static Integer toInteger(Boolean b) {
-        if (Objects.isNull(b)) {
-
-            return null;
-        }
-
-        return Boolean.TRUE.equals(b) ? 1 : 0;
-    }
-
-    public static Boolean toBoolean(Integer integer) {
-        if (Objects.isNull(integer)) {
-
-            return null;//NOSONAR
-        }
-
-        return Integer.valueOf(1).equals(integer) ? Boolean.TRUE : Boolean.FALSE;
-    }
 }

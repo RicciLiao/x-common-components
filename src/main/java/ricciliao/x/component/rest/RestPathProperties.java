@@ -3,12 +3,10 @@ package ricciliao.x.component.rest;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.Objects;
-
 public class RestPathProperties {
 
     private String path;
-    private HttpMethod method;
+    private HttpMethodWrapper method;
 
     public String getPath() {
         return path;
@@ -18,12 +16,20 @@ public class RestPathProperties {
         this.path = path;
     }
 
-    public HttpMethod getMethod() {
+    public HttpMethodWrapper getMethod() {
         return method;
     }
 
-    public void setMethod(HttpMethod method) {
-        this.method = method;
+    public void setMethod(HttpMethodWrapper method) {
+        this.method = new HttpMethodWrapper(method.name());
+    }
+
+    public HttpMethod getHttpMethod() {
+        return method.httpMethod();
+    }
+
+    public void setHttpMethod(HttpMethod httpMethod) {
+        this.method = new HttpMethodWrapper(httpMethod.name());
     }
 
     public UriComponentsBuilder toBuilder() {
@@ -31,25 +37,12 @@ public class RestPathProperties {
         return UriComponentsBuilder.fromHttpUrl(path);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (RestPathProperties) obj;
-        return Objects.equals(this.path, that.path) &&
-                Objects.equals(this.method, that.method);
-    }
+    public record HttpMethodWrapper(String name) {
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(path, method);
-    }
+        public HttpMethod httpMethod() {
 
-    @Override
-    public String toString() {
-        return "RestConfigBo[" +
-                "path=" + path + ", " +
-                "method=" + method + ']';
+            return HttpMethod.valueOf(this.name.toUpperCase());
+        }
     }
 
 

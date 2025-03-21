@@ -53,7 +53,7 @@ public class ConsumerCacheRestService<T extends CacheDto> {
         ResponseEntity<ResponseVo<ResponseSimpleData.Str>> response =
                 restTemplate.exchange(
                         RequestEntity
-                                .method(props.getCreate().getMethod(), uriComponentsBuilder.build().encode().toUri())
+                                .method(props.getCreate().getHttpMethod(), uriComponentsBuilder.build().encode().toUri())
                                 .header(CacheConstants.HTTP_HEADER_FOR_CACHE_STORE, identifier.getStore())
                                 .header(CacheConstants.HTTP_HEADER_FOR_CACHE_CUSTOMER, identifier.getConsumer())
                                 .body(operation),
@@ -76,7 +76,7 @@ public class ConsumerCacheRestService<T extends CacheDto> {
         ResponseEntity<ResponseVo<ResponseSimpleData.Bool>> response =
                 restTemplate.exchange(
                         RequestEntity
-                                .method(props.getUpdate().getMethod(), uriComponentsBuilder.build().encode().toUri())
+                                .method(props.getUpdate().getHttpMethod(), uriComponentsBuilder.build().encode().toUri())
                                 .header(CacheConstants.HTTP_HEADER_FOR_CACHE_STORE, identifier.getStore())
                                 .header(CacheConstants.HTTP_HEADER_FOR_CACHE_CUSTOMER, identifier.getConsumer())
                                 .body(operation),
@@ -100,7 +100,7 @@ public class ConsumerCacheRestService<T extends CacheDto> {
         ResponseEntity<ResponseVo<ResponseSimpleData.Bool>> response =
                 restTemplate.exchange(
                         RequestEntity
-                                .method(props.getDelete().getMethod(), uriComponentsBuilder.build().encode().toUri())
+                                .method(props.getDelete().getHttpMethod(), uriComponentsBuilder.build().encode().toUri())
                                 .header(CacheConstants.HTTP_HEADER_FOR_CACHE_STORE, identifier.getStore())
                                 .header(CacheConstants.HTTP_HEADER_FOR_CACHE_CUSTOMER, identifier.getConsumer())
                                 .build(),
@@ -125,7 +125,7 @@ public class ConsumerCacheRestService<T extends CacheDto> {
         ResponseEntity<ResponseVo<ConsumerOperationDto<T>>> response =
                 restTemplate.exchange(
                         RequestEntity
-                                .method(props.getRetrieve().getMethod(), uriComponentsBuilder.build().encode().toUri())
+                                .method(props.getRetrieve().getHttpMethod(), uriComponentsBuilder.build().encode().toUri())
                                 .header(CacheConstants.HTTP_HEADER_FOR_CACHE_STORE, identifier.getStore())
                                 .header(CacheConstants.HTTP_HEADER_FOR_CACHE_CUSTOMER, identifier.getConsumer())
                                 .build(),

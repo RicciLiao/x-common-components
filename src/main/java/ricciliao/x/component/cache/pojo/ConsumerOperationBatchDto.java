@@ -1,6 +1,7 @@
 package ricciliao.x.component.cache.pojo;
 
 import ricciliao.x.component.cache.consumer.ConsumerData;
+import ricciliao.x.component.random.RandomGenerator;
 import ricciliao.x.component.response.ResponseData;
 
 import java.io.Serial;
@@ -15,28 +16,22 @@ public class ConsumerOperationBatchDto<T extends CacheDto> implements Serializab
     public ConsumerOperationBatchDto() {
     }
 
-    public ConsumerOperationBatchDto(String id, List<T> data) {
-        this.id = id;
+    public ConsumerOperationBatchDto(List<T> data) {
         this.data = data;
     }
 
-    public ConsumerOperationBatchDto(String id, Long ttlOfMillis, List<T> data) {
-        this.id = id;
+    public ConsumerOperationBatchDto(List<T> data, Long ttlOfMillis) {
         this.ttlOfMillis = ttlOfMillis;
         this.data = data;
     }
 
-    private String id;
+    private final String id = RandomGenerator.nextString(12).allAtLeast(3).generate();
     private Long ttlOfMillis;
     @ConsumerData
     private List<T> data;
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public Long getTtlOfMillis() {

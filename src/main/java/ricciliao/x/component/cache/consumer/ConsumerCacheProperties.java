@@ -89,10 +89,13 @@ public class ConsumerCacheProperties extends ApplicationProperties {
 
         public static class CacheRestPathProperties extends RestPathProperties {
 
+            public CacheRestPathProperties() {
+            }
+
             public CacheRestPathProperties(String path, HttpMethod method) {
                 super();
                 this.setPath(path);
-                this.setMethod(method);
+                this.setHttpMethod(method);
             }
         }
     }

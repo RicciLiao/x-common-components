@@ -1,6 +1,7 @@
 package ricciliao.x.component.cache.pojo;
 
 import ricciliao.x.component.cache.consumer.ConsumerData;
+import ricciliao.x.component.random.RandomGenerator;
 import ricciliao.x.component.response.ResponseData;
 
 import java.io.Serial;
@@ -14,28 +15,22 @@ public class ConsumerOperationDto<T extends CacheDto> implements Serializable, R
     public ConsumerOperationDto() {
     }
 
-    public ConsumerOperationDto(String id, T data) {
-        this.id = id;
+    public ConsumerOperationDto(T data) {
         this.data = data;
     }
 
-    public ConsumerOperationDto(String id, Long ttlOfMillis, T data) {
-        this.id = id;
+    public ConsumerOperationDto(T data, Long ttlOfMillis) {
         this.ttlOfMillis = ttlOfMillis;
         this.data = data;
     }
 
-    private String id;
+    private final String id = RandomGenerator.nextString(12).allAtLeast(3).generate();
     private Long ttlOfMillis;
     @ConsumerData
     private T data;
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public Long getTtlOfMillis() {
