@@ -6,7 +6,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class RestPathProperties {
 
     private String path;
-    private HttpMethodWrapper method;
+        private HttpMethodWrapper method;
 
     public String getPath() {
         return path;
@@ -24,17 +24,14 @@ public class RestPathProperties {
         this.method = new HttpMethodWrapper(method.name());
     }
 
-    public HttpMethod getHttpMethod() {
-        return method.httpMethod();
-    }
-
-    public void setHttpMethod(HttpMethod httpMethod) {
-        this.method = new HttpMethodWrapper(httpMethod.name());
-    }
-
     public UriComponentsBuilder toBuilder() {
 
         return UriComponentsBuilder.fromHttpUrl(path);
+    }
+
+    public HttpMethod toHttpMethod(){
+
+        return method.httpMethod();
     }
 
     public record HttpMethodWrapper(String name) {
