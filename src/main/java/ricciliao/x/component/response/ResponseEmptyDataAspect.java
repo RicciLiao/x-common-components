@@ -1,8 +1,8 @@
-/*
 package ricciliao.x.component.response;
 
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.core.Ordered;
+import ricciliao.x.aop.DynamicAspect;
 
 import java.util.Objects;
 
@@ -33,4 +33,3 @@ public class ResponseEmptyDataAspect extends DynamicAspect implements Ordered {
         return Ordered.HIGHEST_PRECEDENCE;
     }
 }
-*/

@@ -1,11 +1,11 @@
 package ricciliao.x.component.context;
 
+import jakarta.annotation.Nonnull;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.lang.NonNull;
 import ricciliao.x.component.props.YamlPropertiesReader;
 
 public abstract class PropsBeanDefinitionRegistryPostProcessor<T> implements BeanDefinitionRegistryPostProcessor {
@@ -22,11 +22,11 @@ public abstract class PropsBeanDefinitionRegistryPostProcessor<T> implements Bea
     }
 
     @Override
-    public void postProcessBeanFactory(@NonNull ConfigurableListableBeanFactory beanFactory) throws BeansException {
+    public void postProcessBeanFactory(@Nonnull ConfigurableListableBeanFactory beanFactory) throws BeansException {
         BeanDefinitionRegistryPostProcessor.super.postProcessBeanFactory(beanFactory);
     }
 
     @Override
-    public abstract void postProcessBeanDefinitionRegistry(@NonNull BeanDefinitionRegistry registry) throws BeansException;
+    public abstract void postProcessBeanDefinitionRegistry(@Nonnull BeanDefinitionRegistry registry) throws BeansException;
 
 }

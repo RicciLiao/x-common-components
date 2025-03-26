@@ -12,7 +12,7 @@ public abstract class ApplicationProperties {
     @JsonIgnore
     private final ObjectMapper objectMapper;
 
-    public ApplicationProperties() {
+    protected ApplicationProperties() {
         objectMapper = new ObjectMapper();
     }
 

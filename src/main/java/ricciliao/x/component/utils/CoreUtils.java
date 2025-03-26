@@ -1,6 +1,5 @@
 package ricciliao.x.component.utils;
 
-import ricciliao.x.component.props.ApplicationProperties;
 import ricciliao.x.component.props.CommonProperties;
 
 import java.time.Instant;
@@ -17,7 +16,7 @@ public class CoreUtils {
         throw new IllegalStateException("Utility class");
     }
 
-    private final static TimeZone TIME_ZONE;
+    private static final TimeZone TIME_ZONE;
 
     static {
         TimeZone tz;
