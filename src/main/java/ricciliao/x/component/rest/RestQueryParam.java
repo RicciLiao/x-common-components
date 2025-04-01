@@ -10,7 +10,7 @@ import java.util.Collection;
 
 public interface RestQueryParam extends Serializable {
 
-    default MultiValueMap<String, String> toMap() throws IllegalAccessException {
+    default MultiValueMap<String, String> toQueryParams() throws IllegalAccessException {
         MultiValueMap<String, String> result = new LinkedMultiValueMap<>();
         for (Field declaredField : this.getClass().getDeclaredFields()) {
             declaredField.setAccessible(true);  //NOSONAR
