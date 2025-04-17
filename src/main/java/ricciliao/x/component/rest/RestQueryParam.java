@@ -2,6 +2,7 @@ package ricciliao.x.component.rest;
 
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.util.ReflectionUtils;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
@@ -13,7 +14,7 @@ public interface RestQueryParam extends Serializable {
     default MultiValueMap<String, String> toQueryParams() {
         MultiValueMap<String, String> result = new LinkedMultiValueMap<>();
         for (Field declaredField : this.getClass().getDeclaredFields()) {
-            declaredField.setAccessible(true);  //NOSONAR
+            ReflectionUtils.makeAccessible(declaredField);
             try {
                 if (Collection.class.isAssignableFrom(declaredField.getType())) {
                     Collection<?> collection = (Collection<?>) declaredField.get(this);
