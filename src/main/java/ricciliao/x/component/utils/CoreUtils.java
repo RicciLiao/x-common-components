@@ -32,7 +32,12 @@ public class CoreUtils {
 
     public static LocalDateTime toLocalDateTime(Long milliseconds) {
 
-        return Objects.isNull(milliseconds) ? null : LocalDateTime.ofInstant(Instant.ofEpochMilli(milliseconds), TIME_ZONE.toZoneId());
+        return Objects.isNull(milliseconds) ? null : toLocalDateTime(milliseconds.longValue());
+    }
+
+    public static LocalDateTime toLocalDateTime(long milliseconds) {
+
+        return LocalDateTime.ofInstant(Instant.ofEpochMilli(milliseconds), TIME_ZONE.toZoneId());
     }
 
     public static Long toLong(LocalDateTime localDateTime) {
@@ -41,9 +46,13 @@ public class CoreUtils {
     }
 
     public static LocalDate toLocalDate(Long milliseconds) {
-        LocalDateTime localDateTime = CoreUtils.toLocalDateTime(milliseconds);
 
-        return Objects.isNull(localDateTime) ? null : localDateTime.toLocalDate();
+        return Objects.isNull(milliseconds) ? null : toLocalDate(milliseconds.longValue());
+    }
+
+    public static LocalDate toLocalDate(long milliseconds) {
+
+        return CoreUtils.toLocalDateTime(milliseconds).toLocalDate();
     }
 
     public static Long toLong(LocalDate localDate) {
