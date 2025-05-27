@@ -6,7 +6,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class RestPathProperties {
 
     private String path;
-        private HttpMethodWrapper method;
+    private HttpMethodWrapper method;
 
     public String getPath() {
         return path;
@@ -29,7 +29,7 @@ public class RestPathProperties {
         return UriComponentsBuilder.fromHttpUrl(path);
     }
 
-    public HttpMethod toHttpMethod(){
+    public HttpMethod toHttpMethod() {
 
         return method.httpMethod();
     }
