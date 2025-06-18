@@ -1,7 +1,7 @@
 package ricciliao.x.component.kafka;
 
-public interface KafkaHandler {
+public interface KafkaHandler<T extends KafkaMessageDto> {
 
-    void handle(String message);
+    void handle(T message);
 
 }
