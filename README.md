@@ -17,3 +17,4 @@ Please refer to `dependencies-control-center` for the version number.
 | com.fasterxml.jackson.dataformat | jackson-dataformat-yaml | provided |
 | jakarta.servlet                  | jakarta.servlet-api     | provided |
 | org.springframework.boot         | spring-boot             | provided |
+| org.springframework.kafka        | spring-kafka            | provided |
