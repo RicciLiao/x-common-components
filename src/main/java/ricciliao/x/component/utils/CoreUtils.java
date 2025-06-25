@@ -1,5 +1,6 @@
 package ricciliao.x.component.utils;
 
+import jakarta.annotation.Nonnull;
 import ricciliao.x.component.props.CommonProperties;
 
 import java.time.Instant;
@@ -11,10 +12,6 @@ import java.util.Objects;
 import java.util.TimeZone;
 
 public class CoreUtils {
-
-    private CoreUtils() {
-        throw new IllegalStateException("Utility class");
-    }
 
     private static final TimeZone TIME_ZONE;
 
@@ -30,34 +27,48 @@ public class CoreUtils {
         TIME_ZONE = tz;
     }
 
-    public static LocalDateTime toLocalDateTime(Long milliseconds) {
-
-        return Objects.isNull(milliseconds) ? null : toLocalDateTime(milliseconds.longValue());
+    private CoreUtils() {
+        throw new IllegalStateException("Utility class");
     }
 
-    public static LocalDateTime toLocalDateTime(long milliseconds) {
+    public static LocalDateTime toLocalDateTime(Long milliseconds) {
+
+        return Objects.isNull(milliseconds) ? null : toLocalDateTimeNotNull(milliseconds);
+    }
+
+    public static LocalDateTime toLocalDateTimeNotNull(long milliseconds) {
 
         return LocalDateTime.ofInstant(Instant.ofEpochMilli(milliseconds), TIME_ZONE.toZoneId());
     }
 
     public static Long toLong(LocalDateTime localDateTime) {
 
-        return Objects.isNull(localDateTime) ? null : localDateTime.atZone(TIME_ZONE.toZoneId()).toInstant().toEpochMilli();
+        return Objects.isNull(localDateTime) ? null : toLongNotNull(localDateTime);
     }
 
     public static LocalDate toLocalDate(Long milliseconds) {
 
-        return Objects.isNull(milliseconds) ? null : toLocalDate(milliseconds.longValue());
-    }
-
-    public static LocalDate toLocalDate(long milliseconds) {
-
-        return CoreUtils.toLocalDateTime(milliseconds).toLocalDate();
+        return Objects.isNull(milliseconds) ? null : toLocalDateNotNull(milliseconds);
     }
 
     public static Long toLong(LocalDate localDate) {
 
         return Objects.isNull(localDate) ? null : CoreUtils.toLong(localDate.atTime(LocalTime.MIN));
+    }
+
+    public static LocalDate toLocalDateNotNull(long milliseconds) {
+
+        return CoreUtils.toLocalDateTimeNotNull(milliseconds).toLocalDate();
+    }
+
+    public static long toLongNotNull(@Nonnull LocalDateTime localDateTime) {
+
+        return localDateTime.atZone(TIME_ZONE.toZoneId()).toInstant().toEpochMilli();
+    }
+
+    public static long toLongNotNull(@Nonnull LocalDate localDate) {
+
+        return CoreUtils.toLongNotNull(localDate.atTime(LocalTime.MIN));
     }
 
 }

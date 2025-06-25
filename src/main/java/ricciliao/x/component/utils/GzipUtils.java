@@ -1,4 +1,4 @@
-package ricciliao.x.component.gzip;
+package ricciliao.x.component.utils;
 
 import org.apache.commons.lang3.StringUtils;
 

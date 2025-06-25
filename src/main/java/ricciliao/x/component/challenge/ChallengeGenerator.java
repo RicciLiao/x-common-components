@@ -1,4 +1,4 @@
-package ricciliao.x.component.random;
+package ricciliao.x.component.challenge;
 
 import ricciliao.x.component.exception.CmnException;
 import ricciliao.x.component.exception.CmnServiceException;
@@ -11,37 +11,45 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
-import java.util.Base64;
 import java.util.Random;
 
-public class CaptchaGenerator {
+public abstract class ChallengeGenerator {
 
-    private static final int WIDTH = 135;
-    private static final int HEIGHT = 35;
+    protected final int imageWidth;
+    protected final int imageHeight;
+    protected final int codeLength;
 
-    public static CaptchaResult generateCaptchaImage(String captchaCode) throws CmnException {
+    protected ChallengeGenerator(int imageWidth, int imageHeight, int codeLength) {
+        this.imageWidth = imageWidth;
+        this.imageHeight = imageHeight;
+        this.codeLength = codeLength;
+    }
 
-        BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+    abstract String generate();
+
+    protected byte[] generate(String code) throws CmnException {
+
+        BufferedImage image = new BufferedImage(this.imageWidth, this.imageHeight, BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics = image.createGraphics();
         // background color
         graphics.setColor(Color.WHITE);
-        graphics.fillRect(0, 0, WIDTH, HEIGHT);
+        graphics.fillRect(0, 0, this.imageWidth, this.imageHeight);
         // font style
         graphics.setFont(new Font("Arial", Font.BOLD, 25));
         // lines
         Random random = new SecureRandom();
         for (int i = 0; i < 10; i++) {
-            int x1 = random.nextInt(WIDTH);
-            int y1 = random.nextInt(HEIGHT);
-            int x2 = random.nextInt(WIDTH);
-            int y2 = random.nextInt(HEIGHT);
+            int x1 = random.nextInt(this.imageWidth);
+            int y1 = random.nextInt(this.imageHeight);
+            int x2 = random.nextInt(this.imageWidth);
+            int y2 = random.nextInt(this.imageHeight);
             graphics.setColor(new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
             graphics.drawLine(x1, y1, x2, y2);
         }
         // captcha code
-        for (int i = 0; i < captchaCode.length(); i++) {
+        for (int i = 0; i < code.length(); i++) {
             graphics.setColor(new Color(random.nextInt(100), random.nextInt(100), random.nextInt(100)));
-            graphics.drawString(String.valueOf(captchaCode.charAt(i)), 25 * i + 10, 25);
+            graphics.drawString(String.valueOf(code.charAt(i)), 25 * i + 10, 25);
         }
         graphics.dispose();
 
@@ -55,10 +63,7 @@ public class CaptchaGenerator {
             throw new CmnServiceException(e);
         }
 
-        return new CaptchaResult(captchaCode, Base64.getEncoder().encodeToString(imageBytes));
-    }
-
-    public record CaptchaResult(String code, String captchaBase64) {
+        return imageBytes;
     }
 
 }
