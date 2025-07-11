@@ -8,7 +8,7 @@ import ricciliao.x.component.utils.CoreUtils;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class Timestamp2LocalDateDeserializer extends JsonDeserializer<LocalDate> {
+public class LocalDateDeserializer extends JsonDeserializer<LocalDate> {
 
     @Override
     public LocalDate deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {

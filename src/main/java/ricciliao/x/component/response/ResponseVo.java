@@ -1,8 +1,12 @@
 package ricciliao.x.component.response;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class ResponseVo<T extends ResponseData> {
+public class ResponseVo<T extends ResponseData> implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 8286232383424230504L;
 
     public ResponseVo(Long code, String message, T data) {
         this.code = code;

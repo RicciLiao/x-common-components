@@ -1,19 +1,20 @@
 package ricciliao.x.component.response;
 
-public class ResponseBuilder {
+public class ResponseBuilder<T extends ResponseData> {
 
+    private final T data;
     private ResponseCode code;
-    private final ResponseData data;
 
-    public ResponseBuilder(ResponseData data) {
+    public ResponseBuilder(T data) {
         this.data = data;
     }
 
-    public ResponseVo<ResponseData> build() {
+    public ResponseVo<T> build() {
+
         return new ResponseVo<>(code.getId(), code.getMessage(), data);
     }
 
-    public ResponseBuilder code(ResponseCode code) {
+    public ResponseBuilder<T> code(ResponseCode code) {
         this.code = code;
 
         return this;

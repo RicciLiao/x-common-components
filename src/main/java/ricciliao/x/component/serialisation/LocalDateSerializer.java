@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class LocalDate2TimestampSerializer extends JsonSerializer<LocalDate> {
+public class LocalDateSerializer extends JsonSerializer<LocalDate> {
 
     @Override
     public void serialize(LocalDate localDate, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {

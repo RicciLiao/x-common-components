@@ -20,34 +20,35 @@ public class ResponseUtils {
         return builder(new ResponseEmptyData()).code(ResponseCodeEnum.SYSTEM_ERROR).build();
     }
 
-    public static ResponseVo<ResponseData> successResponse(ResponseData data) {
+    public static <T extends ResponseData> ResponseVo<ResponseData> successResponse(T data) {
 
         return builder(data).code(ResponseCodeEnum.SUCCESS).build();
     }
 
-    public static ResponseBuilder builder() {
+    public static ResponseBuilder<ResponseData> builder() {
 
-        return new ResponseBuilder(new ResponseEmptyData());
+        return new ResponseBuilder<>(new ResponseEmptyData());
     }
 
-    public static ResponseBuilder builder(ResponseData data) {
+    public static <T extends ResponseData> ResponseBuilder<ResponseData> builder(T data) {
 
-        return new ResponseBuilder(data);
+        return new ResponseBuilder<>(data);
     }
 
-    public static ResponseBuilder builder(List<ResponseFieldViolation> data) {
+    public static ResponseBuilder<ResponseData> builder(List<ResponseFieldViolation> data) {
 
-        return new ResponseBuilder(new ResponseFieldViolationData(data));
+        return new ResponseBuilder<>(new ResponseFieldViolationData(data));
     }
 
-    public static ResponseBuilder builder(BindingResult data) {
+    public static ResponseBuilder<ResponseData> builder(BindingResult data) {
 
-        return new ResponseBuilder(
+        return new ResponseBuilder<>(
                 new ResponseFieldViolationData(
                         data.getFieldErrors().stream()
-                                .map(fieldError -> new ResponseFieldViolation(fieldError.getField(), fieldError.getDefaultMessage()))
+                                .map(fieldError ->
+                                        new ResponseFieldViolation(fieldError.getField(), fieldError.getDefaultMessage()))
                                 .toList())
-        ).code(ResponseCodeEnum.PARAMETER_ERROR);
+        );
     }
 
 }
