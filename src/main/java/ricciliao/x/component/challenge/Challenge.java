@@ -7,23 +7,31 @@ import java.util.Objects;
 public class Challenge implements Serializable {
     @Serial
     private static final long serialVersionUID = -8886903616589026103L;
-    private ChallengeType type;
-    private String code;
-    private String image;
+
     public Challenge() {
     }
-    public Challenge(ChallengeType type, String code, String image) {
-        this.type = type;
+
+    public Challenge(ChallengeTypeStrategy strategy, String code) {
+        this.strategy = strategy;
+        this.code = code;
+    }
+
+    public Challenge(ChallengeTypeStrategy strategy, String code, String image) {
+        this.strategy = strategy;
         this.code = code;
         this.image = image;
     }
 
-    public ChallengeType getType() {
-        return type;
+    private ChallengeTypeStrategy strategy;
+    private String code;
+    private String image;
+
+    public ChallengeTypeStrategy getStrategy() {
+        return strategy;
     }
 
-    public void setType(ChallengeType type) {
-        this.type = type;
+    public void setStrategy(ChallengeTypeStrategy strategy) {
+        this.strategy = strategy;
     }
 
     public String getCode() {
@@ -46,11 +54,11 @@ public class Challenge implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Challenge result)) return false;
-        return getType() == result.getType() && Objects.equals(getCode(), result.getCode()) && Objects.equals(getImage(), result.getImage());
+        return getStrategy() == result.getStrategy() && Objects.equals(getCode(), result.getCode()) && Objects.equals(getImage(), result.getImage());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getType(), getCode(), getImage());
+        return Objects.hash(getStrategy(), getCode(), getImage());
     }
 }
