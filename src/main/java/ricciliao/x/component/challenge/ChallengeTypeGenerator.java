@@ -74,7 +74,7 @@ public abstract class ChallengeTypeGenerator {
             graphics2D.drawString(
                     String.valueOf(charPattern.character),
                     -charPattern.width / 2,
-                    (fontMetrics.getAscent() - charPattern.getHeight() / 2) + /*RandomGenerator.randomLength(-6, 6)*/(test % 2 == 0 ? -6 : 6)
+                    (fontMetrics.getAscent() - charPattern.getHeight() / 2) + RandomGenerator.randomLength(-6, 6)
             );
 
             graphics2D.rotate(-Math.toRadians(charPattern.rotate));
@@ -170,7 +170,7 @@ public abstract class ChallengeTypeGenerator {
             this.character = character;
             this.rotate = RandomGenerator.randomLength(-45, 45);
             this.color = new Color(RandomGenerator.randomLength(0, 120), RandomGenerator.randomLength(0, 120), RandomGenerator.randomLength(0, 120));
-            this.font = new Font("Arial", Font.BOLD, /*RandomGenerator.randomLength(35, 45)*/45);
+            this.font = new Font("Arial", Font.BOLD, RandomGenerator.randomLength(40, 45));
             this.paddingNext = /*RandomGenerator.randomLength(5, 10)*/10;
             graphics2D.setFont(this.font);
             FontMetrics fontMetrics = graphics2D.getFontMetrics();
