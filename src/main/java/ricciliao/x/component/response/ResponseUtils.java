@@ -1,8 +1,10 @@
 package ricciliao.x.component.response;
 
-import org.springframework.validation.BindingResult;
 
-import java.util.List;
+import ricciliao.x.component.response.code.ResponseCode;
+import ricciliao.x.component.response.code.impl.ResponseCodeEnum;
+import ricciliao.x.component.response.data.ResponseData;
+import ricciliao.x.component.response.data.SimpleData;
 
 public class ResponseUtils {
 
@@ -10,45 +12,19 @@ public class ResponseUtils {
         throw new IllegalStateException("Utility class");
     }
 
-    public static ResponseVo<ResponseData> successResponse() {
+    public static Response<ResponseData> successResponse() {
 
-        return builder(new ResponseEmptyData()).code(ResponseCodeEnum.SUCCESS).build();
+        return new Response<>(ResponseCodeEnum.SUCCESS, new SimpleData.Blank());
     }
 
-    public static ResponseVo<ResponseData> errorResponse() {
+    public static <T extends ResponseData> Response<T> successResponse(T data) {
 
-        return builder(new ResponseEmptyData()).code(ResponseCodeEnum.SYSTEM_ERROR).build();
+        return new Response<>(ResponseCodeEnum.SUCCESS, data);
     }
 
-    public static <T extends ResponseData> ResponseVo<ResponseData> successResponse(T data) {
+    public static <T extends ResponseData> Response<T> successResponse(ResponseCode code, T data) {
 
-        return builder(data).code(ResponseCodeEnum.SUCCESS).build();
-    }
-
-    public static ResponseBuilder<ResponseData> builder() {
-
-        return new ResponseBuilder<>(new ResponseEmptyData());
-    }
-
-    public static <T extends ResponseData> ResponseBuilder<ResponseData> builder(T data) {
-
-        return new ResponseBuilder<>(data);
-    }
-
-    public static ResponseBuilder<ResponseData> builder(List<ResponseFieldViolation> data) {
-
-        return new ResponseBuilder<>(new ResponseFieldViolationData(data));
-    }
-
-    public static ResponseBuilder<ResponseData> builder(BindingResult data) {
-
-        return new ResponseBuilder<>(
-                new ResponseFieldViolationData(
-                        data.getFieldErrors().stream()
-                                .map(fieldError ->
-                                        new ResponseFieldViolation(fieldError.getField(), fieldError.getDefaultMessage()))
-                                .toList())
-        );
+        return new Response<>(code, data);
     }
 
 }

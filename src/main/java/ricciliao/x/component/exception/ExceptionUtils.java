@@ -1,11 +1,11 @@
 package ricciliao.x.component.exception;
 
 
-import org.apache.commons.lang3.StringUtils;
+import io.micrometer.common.util.StringUtils;
 
-public class CmnExceptionUtils {
+public class ExceptionUtils {
 
-    private CmnExceptionUtils() {
+    private ExceptionUtils() {
         throw new IllegalStateException("Utility class");
     }
 
@@ -16,7 +16,7 @@ public class CmnExceptionUtils {
     }
 
     private static void traceStack(StringBuilder sbr, Throwable throwable) {
-        if (throwable instanceof CmnServiceException se) {
+        if (throwable instanceof UnexpectedException se) {
             traceStack(sbr, se.getThrowable());
         }
         sbr.append(throwable.getClass().getName()).append(":");

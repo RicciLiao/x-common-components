@@ -8,17 +8,17 @@ import ricciliao.x.component.response.code.impl.PrimaryEnum;
 
 import java.io.Serial;
 
-public class ConcurrentException extends AbstractException {
+public class SecurityException extends AbstractException {
     @Serial
-    private static final long serialVersionUID = -6404768982745779640L;
+    private static final long serialVersionUID = 4709323374453711581L;
 
-    protected ConcurrentException(@Nonnull Secondary secondaryCode) {
+    protected SecurityException(@Nonnull Secondary secondaryCode) {
         super(secondaryCode);
     }
 
     @Override
     Primary getPrimaryCode() {
 
-        return PrimaryEnum.CONCURRENT_ERROR;
+        return PrimaryEnum.SECURITY_ERROR;
     }
 }

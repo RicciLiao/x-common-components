@@ -1,11 +1,11 @@
 package ricciliao.x.component.executor;
 
-import ricciliao.x.component.exception.CmnServiceException;
+import ricciliao.x.component.exception.UnexpectedException;
 
 public class RetryResult<T> {
 
     private T result;
-    private CmnServiceException serviceException;
+    private UnexpectedException serviceException;
 
     public T getResult() {
         return result;
@@ -15,11 +15,11 @@ public class RetryResult<T> {
         this.result = result;
     }
 
-    public CmnServiceException getServiceException() {
+    public UnexpectedException getServiceException() {
         return serviceException;
     }
 
-    public void setServiceException(CmnServiceException serviceException) {
+    public void setServiceException(UnexpectedException serviceException) {
         this.serviceException = serviceException;
     }
 
