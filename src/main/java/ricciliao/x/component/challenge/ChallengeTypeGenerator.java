@@ -63,7 +63,6 @@ public abstract class ChallengeTypeGenerator {
 
         int x = CANVAS_PADDING / 2;
         int y = image.getHeight() / 2;
-        int test = 0;
         // captcha code
         for (CharPattern charPattern : codeSize.getRight()) {
             graphics2D.setColor(charPattern.getColor());
@@ -80,7 +79,6 @@ public abstract class ChallengeTypeGenerator {
             graphics2D.rotate(-Math.toRadians(charPattern.rotate));
             graphics2D.translate(-(x + charPattern.width / 2.0), -y);
             x += charPattern.width + charPattern.paddingNext;
-            test++;
         }
         this.addInterference(image, graphics2D);
         graphics2D.dispose();
