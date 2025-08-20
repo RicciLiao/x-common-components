@@ -118,7 +118,7 @@ public abstract class ChallengeTypeGenerator {
         graphics2D.dispose();
     }
 
-    private void addLines(BufferedImage image, Graphics2D graphics2D){
+    private void addLines(BufferedImage image, Graphics2D graphics2D) {
         for (int i = 0; i < 15; i++) {
             int x1 = RandomGenerator.randomLength(-CANVAS_PADDING, image.getWidth() + CANVAS_PADDING);
             int y1 = RandomGenerator.randomLength(-CANVAS_PADDING, image.getHeight() + CANVAS_PADDING);
