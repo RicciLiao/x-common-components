@@ -2,9 +2,9 @@ package ricciliao.x.component.exception;
 
 
 import jakarta.annotation.Nonnull;
-import ricciliao.x.component.response.code.Primary;
-import ricciliao.x.component.response.code.Secondary;
-import ricciliao.x.component.response.code.impl.PrimaryEnum;
+import ricciliao.x.component.response.code.PrimaryCode;
+import ricciliao.x.component.response.code.SecondaryCode;
+import ricciliao.x.component.response.code.impl.PrimaryCodeEnum;
 
 import java.io.Serial;
 
@@ -14,7 +14,7 @@ public class UnexpectedException extends AbstractException {
 
     private final Throwable throwable;
 
-    public UnexpectedException(@Nonnull Secondary secondaryCode,
+    public UnexpectedException(@Nonnull SecondaryCode secondaryCode,
                                Throwable throwable) {
         super(secondaryCode);
         this.throwable = throwable;
@@ -25,8 +25,8 @@ public class UnexpectedException extends AbstractException {
     }
 
     @Override
-    Primary getPrimaryCode() {
+    PrimaryCode getPrimaryCode() {
 
-        return PrimaryEnum.UNEXPECTED_ERROR;
+        return PrimaryCodeEnum.UNEXPECTED_ERROR;
     }
 }

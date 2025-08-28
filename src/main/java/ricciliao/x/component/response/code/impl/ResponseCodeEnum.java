@@ -1,30 +1,31 @@
 package ricciliao.x.component.response.code.impl;
 
-import ricciliao.x.component.response.code.Primary;
+
+import ricciliao.x.component.response.code.PrimaryCode;
 import ricciliao.x.component.response.code.ResponseCode;
-import ricciliao.x.component.response.code.Secondary;
+import ricciliao.x.component.response.code.SecondaryCode;
 
 public enum ResponseCodeEnum implements ResponseCode {
-    SUCCESS(PrimaryEnum.SUCCESS, SecondaryEnum.BLANK),
-    UNEXPECTED_ERROR(PrimaryEnum.UNEXPECTED_ERROR, SecondaryEnum.BLANK),
+    SUCCESS(PrimaryCodeEnum.SUCCESS, SecondaryCodeEnum.BLANK),
+    UNEXPECTED_ERROR(PrimaryCodeEnum.UNEXPECTED_ERROR, SecondaryCodeEnum.BLANK),
     ;
 
-    private final Primary primary;
-    private final Secondary secondary;
+    private final PrimaryCode primary;
+    private final SecondaryCode secondary;
 
-    ResponseCodeEnum(Primary primary, Secondary secondary) {
+    ResponseCodeEnum(PrimaryCode primary, SecondaryCode secondary) {
         this.primary = primary;
         this.secondary = secondary;
     }
 
     @Override
-    public Primary getPrimary() {
+    public PrimaryCode getPrimary() {
 
         return this.primary;
     }
 
     @Override
-    public Secondary getSecondary() {
+    public SecondaryCode getSecondary() {
 
         return this.secondary;
     }

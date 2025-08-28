@@ -1,7 +1,6 @@
 package ricciliao.x.component.response;
 
 
-import ricciliao.x.component.response.code.ResponseCode;
 import ricciliao.x.component.response.code.impl.ResponseCodeEnum;
 import ricciliao.x.component.response.data.ResponseData;
 import ricciliao.x.component.response.data.SimpleData;
@@ -12,19 +11,19 @@ public class ResponseUtils {
         throw new IllegalStateException("Utility class");
     }
 
-    public static Response<ResponseData> successResponse() {
+    public static Response<ResponseData> success() {
 
-        return new Response<>(ResponseCodeEnum.SUCCESS, new SimpleData.Blank());
+        return Response.of(ResponseCodeEnum.SUCCESS, SimpleData.blank());
     }
 
-    public static <T extends ResponseData> Response<T> successResponse(T data) {
+    public static <T extends ResponseData> Response<T> success(T data) {
 
-        return new Response<>(ResponseCodeEnum.SUCCESS, data);
+        return Response.of(ResponseCodeEnum.SUCCESS, data);
     }
 
-    public static <T extends ResponseData> Response<T> successResponse(ResponseCode code, T data) {
+    public static Response<ResponseData> unexpected() {
 
-        return new Response<>(code, data);
+        return Response.of(ResponseCodeEnum.UNEXPECTED_ERROR, SimpleData.blank());
     }
 
 }

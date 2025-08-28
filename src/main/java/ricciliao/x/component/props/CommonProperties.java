@@ -19,6 +19,8 @@ public class CommonProperties extends ApplicationProperties {
      * Application version
      */
     private String version;
+    private String artifact;
+    private String group;
 
     public TimeZone getTimeZone() {
         return timeZone;
@@ -42,5 +44,21 @@ public class CommonProperties extends ApplicationProperties {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    public String getArtifact() {
+        return artifact;
+    }
+
+    public void setArtifact(String artifact) {
+        this.artifact = artifact;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
     }
 }

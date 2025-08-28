@@ -2,9 +2,9 @@ package ricciliao.x.component.exception;
 
 
 import jakarta.annotation.Nonnull;
-import ricciliao.x.component.response.code.Primary;
-import ricciliao.x.component.response.code.Secondary;
-import ricciliao.x.component.response.code.impl.PrimaryEnum;
+import ricciliao.x.component.response.code.PrimaryCode;
+import ricciliao.x.component.response.code.SecondaryCode;
+import ricciliao.x.component.response.code.impl.PrimaryCodeEnum;
 
 import java.io.Serial;
 
@@ -12,13 +12,13 @@ public class RestException extends AbstractException {
     @Serial
     private static final long serialVersionUID = 5362552358311799141L;
 
-    protected RestException(@Nonnull Secondary secondaryCode) {
+    protected RestException(@Nonnull SecondaryCode secondaryCode) {
         super(secondaryCode);
     }
 
     @Override
-    Primary getPrimaryCode() {
+    PrimaryCode getPrimaryCode() {
 
-        return PrimaryEnum.REST_ERROR;
+        return PrimaryCodeEnum.REST_ERROR;
     }
 }

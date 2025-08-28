@@ -6,7 +6,7 @@ import ricciliao.x.component.executor.RetryExecutors;
 import ricciliao.x.component.executor.RetryJob;
 import ricciliao.x.component.executor.RetryResult;
 import ricciliao.x.component.executor.RetrySelector;
-import ricciliao.x.component.response.code.impl.SecondaryEnum;
+import ricciliao.x.component.response.code.impl.SecondaryCodeEnum;
 
 import java.util.Objects;
 
@@ -20,7 +20,7 @@ public class RetryExecutorsImpl implements RetryExecutors {
                 retryResult.clear();
                 retryResult.setResult(restTask.executor(z));
             } catch (Exception e) {
-                retryResult.setServiceException(new UnexpectedException(SecondaryEnum.BLANK, e));
+                retryResult.setServiceException(new UnexpectedException(SecondaryCodeEnum.BLANK, e));
             }
             if (Objects.isNull(retrySelector) || !retrySelector.retry(retrySelector, retryResult, retryMeta)) {
                 if (Objects.nonNull(retryResult.getServiceException())) {

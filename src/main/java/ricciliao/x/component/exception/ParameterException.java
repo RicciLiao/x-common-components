@@ -2,9 +2,9 @@ package ricciliao.x.component.exception;
 
 
 import jakarta.annotation.Nonnull;
-import ricciliao.x.component.response.code.Primary;
-import ricciliao.x.component.response.code.Secondary;
-import ricciliao.x.component.response.code.impl.PrimaryEnum;
+import ricciliao.x.component.response.code.PrimaryCode;
+import ricciliao.x.component.response.code.SecondaryCode;
+import ricciliao.x.component.response.code.impl.PrimaryCodeEnum;
 import ricciliao.x.component.response.data.SimpleData;
 
 import java.io.Serial;
@@ -16,16 +16,16 @@ public class ParameterException extends AbstractException {
 
     private final SimpleData.Collection<SimpleData.FieldViolation> collection;
 
-    protected ParameterException(@Nonnull Secondary secondaryCode,
+    protected ParameterException(@Nonnull SecondaryCode secondaryCode,
                                  List<SimpleData.FieldViolation> list) {
         super(secondaryCode);
         this.collection = SimpleData.Collection.data(list);
     }
 
     @Override
-    Primary getPrimaryCode() {
+    PrimaryCode getPrimaryCode() {
 
-        return PrimaryEnum.PARAMETER_ERROR;
+        return PrimaryCodeEnum.PARAMETER_ERROR;
     }
 
     public SimpleData.Collection<SimpleData.FieldViolation> getCollection() {

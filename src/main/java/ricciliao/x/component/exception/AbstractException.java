@@ -1,8 +1,9 @@
 package ricciliao.x.component.exception;
 
+
 import jakarta.annotation.Nonnull;
-import ricciliao.x.component.response.code.Primary;
-import ricciliao.x.component.response.code.Secondary;
+import ricciliao.x.component.response.code.PrimaryCode;
+import ricciliao.x.component.response.code.SecondaryCode;
 
 import java.io.Serial;
 
@@ -10,9 +11,9 @@ public abstract class AbstractException extends Exception {
     @Serial
     private static final long serialVersionUID = 486238316705445980L;
 
-    private final Secondary secondaryCode;
+    private final SecondaryCode secondaryCode;
 
-    protected AbstractException(@Nonnull Secondary secondaryCode) {
+    protected AbstractException(@Nonnull SecondaryCode secondaryCode) {
         this.secondaryCode = secondaryCode;
     }
 
@@ -22,9 +23,10 @@ public abstract class AbstractException extends Exception {
         return secondaryCode.getMessage();
     }
 
-    abstract Primary getPrimaryCode();
+    abstract PrimaryCode getPrimaryCode();
 
-    public Secondary getSecondaryCode() {
+    public SecondaryCode getSecondaryCode() {
         return secondaryCode;
     }
+
 }
