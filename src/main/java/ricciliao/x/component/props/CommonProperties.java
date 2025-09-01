@@ -12,7 +12,7 @@ public class CommonProperties extends ApplicationProperties {
      */
     private TimeZone timeZone;
     /**
-     * Application unique name, will retrieve from spring.application.name
+     * Application unique name, will retrieve from BuildProperties
      */
     private String consumer;
     /**
