@@ -5,7 +5,6 @@ import java.io.Serial;
 public interface PrimaryCode extends CodeLevel {
 
     static PrimaryCode of(int id, String message) {
-        CodeLevel codeLevel = CodeLevel.of(id, message);
 
         return new PrimaryCode() {
             @Serial
@@ -14,13 +13,13 @@ public interface PrimaryCode extends CodeLevel {
             @Override
             public int getId() {
 
-                return codeLevel.getId();
+                return id;
             }
 
             @Override
             public String getMessage() {
 
-                return codeLevel.getMessage();
+                return message;
             }
         };
     }

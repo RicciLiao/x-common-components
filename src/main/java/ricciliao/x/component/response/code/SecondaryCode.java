@@ -1,21 +1,25 @@
 package ricciliao.x.component.response.code;
 
+import java.io.Serial;
+
 public interface SecondaryCode extends CodeLevel {
 
     static SecondaryCode of(int id, String message) {
-        CodeLevel codeLevel = CodeLevel.of(id, message);
 
         return new SecondaryCode() {
+            @Serial
+            private static final long serialVersionUID = -1340789690815887485L;
+
             @Override
             public int getId() {
 
-                return codeLevel.getId();
+                return id;
             }
 
             @Override
             public String getMessage() {
 
-                return codeLevel.getMessage();
+                return message;
             }
         };
     }

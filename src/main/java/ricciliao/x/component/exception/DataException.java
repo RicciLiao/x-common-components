@@ -12,7 +12,7 @@ public class DataException extends AbstractException {
     @Serial
     private static final long serialVersionUID = -6069708940719558764L;
 
-    protected DataException(@Nonnull SecondaryCode secondaryCode) {
+    public DataException(@Nonnull SecondaryCode secondaryCode) {
         super(secondaryCode);
     }
 

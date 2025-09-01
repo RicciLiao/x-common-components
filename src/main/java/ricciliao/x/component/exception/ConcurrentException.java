@@ -12,7 +12,7 @@ public class ConcurrentException extends AbstractException {
     @Serial
     private static final long serialVersionUID = -6404768982745779640L;
 
-    protected ConcurrentException(@Nonnull SecondaryCode secondaryCode) {
+    public ConcurrentException(@Nonnull SecondaryCode secondaryCode) {
         super(secondaryCode);
     }
 

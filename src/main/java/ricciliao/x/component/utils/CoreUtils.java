@@ -1,13 +1,17 @@
 package ricciliao.x.component.utils;
 
 import jakarta.annotation.Nonnull;
+import org.springframework.validation.BindingResult;
 import ricciliao.x.component.props.CommonProperties;
+import ricciliao.x.component.response.data.SimpleData;
 
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.TimeZone;
 
@@ -69,6 +73,20 @@ public class CoreUtils {
     public static long toLongNotNull(@Nonnull LocalDate localDate) {
 
         return CoreUtils.toLongNotNull(localDate.atTime(LocalTime.MIN));
+    }
+
+    public static List<SimpleData.FieldViolation> toFieldViolation(BindingResult bindingResult) {
+        if (bindingResult.hasFieldErrors()) {
+
+            return
+                    bindingResult.getFieldErrors()
+                            .stream()
+                            .map(fieldError ->
+                                    SimpleData.of(fieldError.getField(), fieldError.getDefaultMessage()))
+                            .toList();
+        }
+
+        return Collections.emptyList();
     }
 
 }

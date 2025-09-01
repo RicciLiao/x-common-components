@@ -12,7 +12,7 @@ public class RestException extends AbstractException {
     @Serial
     private static final long serialVersionUID = 5362552358311799141L;
 
-    protected RestException(@Nonnull SecondaryCode secondaryCode) {
+    public RestException(@Nonnull SecondaryCode secondaryCode) {
         super(secondaryCode);
     }
 

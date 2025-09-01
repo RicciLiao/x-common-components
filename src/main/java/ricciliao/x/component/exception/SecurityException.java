@@ -12,7 +12,7 @@ public class SecurityException extends AbstractException {
     @Serial
     private static final long serialVersionUID = 4709323374453711581L;
 
-    protected SecurityException(@Nonnull SecondaryCode secondaryCode) {
+    public SecurityException(@Nonnull SecondaryCode secondaryCode) {
         super(secondaryCode);
     }
 

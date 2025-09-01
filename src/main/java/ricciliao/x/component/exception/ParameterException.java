@@ -16,8 +16,8 @@ public class ParameterException extends AbstractException {
 
     private final SimpleData.Collection<SimpleData.FieldViolation> collection;
 
-    protected ParameterException(@Nonnull SecondaryCode secondaryCode,
-                                 List<SimpleData.FieldViolation> list) {
+    public ParameterException(@Nonnull SecondaryCode secondaryCode,
+                              List<SimpleData.FieldViolation> list) {
         super(secondaryCode);
         this.collection = SimpleData.Collection.data(list);
     }

@@ -8,20 +8,4 @@ public interface CodeLevel extends Serializable {
 
     String getMessage();
 
-    static CodeLevel of(int id, String message) {
-
-        return new CodeLevel() {
-            @Override
-            public int getId() {
-
-                return id;
-            }
-
-            @Override
-            public String getMessage() {
-
-                return message;
-            }
-        };
-    }
 }
