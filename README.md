@@ -18,3 +18,4 @@ Please refer to `dependencies-control-center` for the version number.
 | jakarta.servlet                  | jakarta.servlet-api     | provided |
 | org.springframework.boot         | spring-boot             | provided |
 | org.springframework.kafka        | spring-kafka            | provided |
+| org.springframework              | spring-webmvc           | provided |
