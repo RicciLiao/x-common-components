@@ -22,7 +22,7 @@ public final class ResponseModule extends SimpleModule {
     private static final long serialVersionUID = -3818799819306161781L;
 
     public ResponseModule(CommonProperties props) {
-        super(VersionUtil.parseVersion(props.getVersion(), "", "2"));
+        super(VersionUtil.parseVersion(props.getVersion(), props.getGroup(), props.getArtifact()));
         this.addSerializer(LocalDate.class, new LocalDateSerializer());
         this.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer());
         this.addDeserializer(LocalDate.class, new LocalDateDeserializer());

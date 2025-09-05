@@ -8,6 +8,7 @@ import ricciliao.x.component.response.code.impl.PrimaryCodeEnum;
 import ricciliao.x.component.response.data.SimpleData;
 
 import java.io.Serial;
+import java.util.Collections;
 import java.util.List;
 
 public class ParameterException extends AbstractException {
@@ -20,6 +21,11 @@ public class ParameterException extends AbstractException {
                               List<SimpleData.FieldViolation> list) {
         super(secondaryCode);
         this.collection = SimpleData.Collection.data(list);
+    }
+
+    public ParameterException(@Nonnull SecondaryCode secondaryCode) {
+        super(secondaryCode);
+        this.collection = SimpleData.Collection.data(Collections.emptyList());
     }
 
     @Override
