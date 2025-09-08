@@ -17,7 +17,7 @@ public class RestException extends AbstractException {
     }
 
     @Override
-    PrimaryCode getPrimaryCode() {
+    public PrimaryCode getPrimaryCode() {
 
         return PrimaryCodeEnum.REST_ERROR;
     }

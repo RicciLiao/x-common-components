@@ -17,7 +17,7 @@ public class ConcurrentException extends AbstractException {
     }
 
     @Override
-    PrimaryCode getPrimaryCode() {
+    public PrimaryCode getPrimaryCode() {
 
         return PrimaryCodeEnum.CONCURRENT_ERROR;
     }

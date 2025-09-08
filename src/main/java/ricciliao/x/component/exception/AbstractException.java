@@ -23,7 +23,7 @@ public abstract class AbstractException extends Exception {
         return secondaryCode.getMessage();
     }
 
-    abstract PrimaryCode getPrimaryCode();
+    public abstract PrimaryCode getPrimaryCode();
 
     public SecondaryCode getSecondaryCode() {
         return secondaryCode;

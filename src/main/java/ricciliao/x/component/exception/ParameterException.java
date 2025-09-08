@@ -29,7 +29,7 @@ public class ParameterException extends AbstractException {
     }
 
     @Override
-    PrimaryCode getPrimaryCode() {
+    public PrimaryCode getPrimaryCode() {
 
         return PrimaryCodeEnum.PARAMETER_ERROR;
     }

@@ -17,7 +17,7 @@ public class SecurityException extends AbstractException {
     }
 
     @Override
-    PrimaryCode getPrimaryCode() {
+    public PrimaryCode getPrimaryCode() {
 
         return PrimaryCodeEnum.SECURITY_ERROR;
     }

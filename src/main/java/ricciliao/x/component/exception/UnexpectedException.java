@@ -25,7 +25,7 @@ public class UnexpectedException extends AbstractException {
     }
 
     @Override
-    PrimaryCode getPrimaryCode() {
+    public PrimaryCode getPrimaryCode() {
 
         return PrimaryCodeEnum.UNEXPECTED_ERROR;
     }
