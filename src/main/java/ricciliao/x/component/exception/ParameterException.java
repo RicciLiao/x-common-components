@@ -5,6 +5,7 @@ import jakarta.annotation.Nonnull;
 import ricciliao.x.component.response.code.PrimaryCode;
 import ricciliao.x.component.response.code.SecondaryCode;
 import ricciliao.x.component.response.code.impl.PrimaryCodeEnum;
+import ricciliao.x.component.response.data.ResponseData;
 import ricciliao.x.component.response.data.SimpleData;
 
 import java.io.Serial;
@@ -36,5 +37,11 @@ public class ParameterException extends AbstractException {
 
     public SimpleData.Collection<SimpleData.FieldViolation> getCollection() {
         return collection;
+    }
+
+    @Override
+    public ResponseData getResponseData() {
+
+        return this.getCollection();
     }
 }

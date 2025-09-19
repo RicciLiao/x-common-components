@@ -40,6 +40,17 @@
             <artifactId>dynamic-aop-component</artifactId>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>ricciliao.x</groupId>
+            <artifactId>audit-log-component</artifactId>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>ricciliao.x</groupId>
+                    <artifactId>common-components</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>

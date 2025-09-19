@@ -1,12 +1,17 @@
 package ricciliao.x.component.response;
 
 
+import jakarta.annotation.Nullable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import ricciliao.x.component.response.code.ResponseCode;
 import ricciliao.x.component.response.code.impl.ResponseCodeEnum;
 import ricciliao.x.component.response.data.ResponseData;
 import ricciliao.x.component.response.data.SimpleData;
 import ricciliao.x.component.utils.CoreUtils;
+
+import java.util.Optional;
 
 public class ResponseUtils {
 
@@ -32,6 +37,31 @@ public class ResponseUtils {
     public static Response<ResponseData> bindingResult(ResponseCode code, BindingResult bindingResult) {
 
         return Response.of(code, SimpleData.of(CoreUtils.toFieldViolation(bindingResult)));
+    }
+
+    public static boolean isBlankResponse(Response<?> response) {
+
+        return Optional.ofNullable(response)
+                .map(Response::isBlankData)
+                .isEmpty();
+    }
+
+    @Nullable
+    public static <T extends ResponseData> T safetyGetResponseData(ResponseEntity<Response<T>> entity) {
+
+        return Optional.ofNullable(safetyGetResponse(entity))
+                .filter(body -> !body.isBlankData())
+                .map(Response::getData)
+                .orElse(null);
+    }
+
+    @Nullable
+    public static <T extends ResponseData> Response<T> safetyGetResponse(ResponseEntity<Response<T>> entity) {
+
+        return Optional.ofNullable(entity)
+                .filter(e -> HttpStatus.OK.equals(e.getStatusCode()))
+                .map(ResponseEntity::getBody)
+                .orElse(null);
     }
 
 }

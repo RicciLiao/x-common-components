@@ -4,9 +4,11 @@ package ricciliao.x.component.response;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import ricciliao.x.component.response.code.ResponseCode;
 import ricciliao.x.component.response.data.ResponseData;
+import ricciliao.x.component.response.data.SimpleData;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Objects;
 
 @JsonInclude(JsonInclude.Include.ALWAYS)
 public class Response<T extends ResponseData> implements Serializable {
@@ -42,6 +44,11 @@ public class Response<T extends ResponseData> implements Serializable {
 
     public T getData() {
         return data;
+    }
+
+    public boolean isBlankData() {
+
+        return Objects.isNull(this.data) || this.data instanceof SimpleData.Blank;
     }
 
 }

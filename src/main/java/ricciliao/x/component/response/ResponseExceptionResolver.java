@@ -13,14 +13,16 @@ import org.springframework.web.servlet.handler.AbstractHandlerMethodExceptionRes
 import ricciliao.x.component.exception.AbstractException;
 import ricciliao.x.component.response.code.ResponseCode;
 import ricciliao.x.component.response.data.ResponseData;
-import ricciliao.x.component.response.data.SimpleData;
 import ricciliao.x.component.sneaky.SneakyThrowUtils;
+import ricciliao.x.log.AuditLoggerFactory;
+import ricciliao.x.log.logger.AuditLogger;
 
 import java.lang.reflect.Type;
 import java.util.Objects;
 
 public class ResponseExceptionResolver extends AbstractHandlerMethodExceptionResolver {
 
+    private final static AuditLogger auditLogger = AuditLoggerFactory.getLogger(ResponseExceptionResolver.class);
     private final ResponseHttpMessageConverter converter;
 
     public ResponseExceptionResolver(ResponseHttpMessageConverter converter) {
@@ -34,7 +36,7 @@ public class ResponseExceptionResolver extends AbstractHandlerMethodExceptionRes
                                                         @Nonnull Exception ex) {
         Response<ResponseData> xResponse;
         if (ex instanceof AbstractException aex) {
-            xResponse = Response.of(ResponseCode.of(aex.getPrimaryCode(), aex.getSecondaryCode()), SimpleData.blank());
+            xResponse = Response.of(ResponseCode.of(aex.getPrimaryCode(), aex.getSecondaryCode()), aex.getResponseData());
         } else {
             xResponse = ResponseUtils.unexpected();
         }
@@ -42,6 +44,7 @@ public class ResponseExceptionResolver extends AbstractHandlerMethodExceptionRes
                 GenericTypeResolver.resolveType(handler.getReturnType().getGenericParameterType(), handler.getReturnType().getContainingClass()) :
                 null;
         SneakyThrowUtils.run(() -> converter.write(xResponse, type, MediaType.APPLICATION_JSON, new ServletServerHttpResponse(response)));
+        auditLogger.error(ex.getMessage(), ex);
 
         return new ModelAndView();
     }
