@@ -22,7 +22,7 @@ import java.util.Objects;
 
 public class ResponseExceptionResolver extends AbstractHandlerMethodExceptionResolver {
 
-    private final static XLogger xLogger = XLoggerFactory.getLogger(ResponseExceptionResolver.class);
+    private static final XLogger xLogger = XLoggerFactory.getLogger(ResponseExceptionResolver.class);
     private final ResponseHttpMessageConverter converter;
 
     public ResponseExceptionResolver(ResponseHttpMessageConverter converter) {
