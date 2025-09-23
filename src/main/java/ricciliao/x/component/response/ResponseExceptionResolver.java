@@ -14,15 +14,15 @@ import ricciliao.x.component.exception.AbstractException;
 import ricciliao.x.component.response.code.ResponseCode;
 import ricciliao.x.component.response.data.ResponseData;
 import ricciliao.x.component.sneaky.SneakyThrowUtils;
-import ricciliao.x.log.AuditLoggerFactory;
-import ricciliao.x.log.logger.AuditLogger;
+import ricciliao.x.log.api.XLogger;
+import ricciliao.x.log.api.XLoggerFactory;
 
 import java.lang.reflect.Type;
 import java.util.Objects;
 
 public class ResponseExceptionResolver extends AbstractHandlerMethodExceptionResolver {
 
-    private final static AuditLogger auditLogger = AuditLoggerFactory.getLogger(ResponseExceptionResolver.class);
+    private final static XLogger xLogger = XLoggerFactory.getLogger(ResponseExceptionResolver.class);
     private final ResponseHttpMessageConverter converter;
 
     public ResponseExceptionResolver(ResponseHttpMessageConverter converter) {
@@ -44,7 +44,7 @@ public class ResponseExceptionResolver extends AbstractHandlerMethodExceptionRes
                 GenericTypeResolver.resolveType(handler.getReturnType().getGenericParameterType(), handler.getReturnType().getContainingClass()) :
                 null;
         SneakyThrowUtils.run(() -> converter.write(xResponse, type, MediaType.APPLICATION_JSON, new ServletServerHttpResponse(response)));
-        auditLogger.error(ex.getMessage(), ex);
+        xLogger.error(ex.getMessage(), ex);
 
         return new ModelAndView();
     }

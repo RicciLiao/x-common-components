@@ -42,14 +42,9 @@
         </dependency>
         <dependency>
             <groupId>ricciliao.x</groupId>
-            <artifactId>audit-log-component</artifactId>
+            <artifactId>logging-api</artifactId>
             <scope>compile</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>ricciliao.x</groupId>
-                    <artifactId>common-components</artifactId>
-                </exclusion>
-            </exclusions>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
