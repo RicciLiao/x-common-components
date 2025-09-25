@@ -40,12 +40,6 @@
             <artifactId>dynamic-aop-component</artifactId>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>ricciliao.x</groupId>
-            <artifactId>logging-api</artifactId>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -80,6 +74,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>ricciliao.x</groupId>
+            <artifactId>logging-api</artifactId>
             <scope>provided</scope>
         </dependency>
     </dependencies>

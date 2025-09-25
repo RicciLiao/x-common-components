@@ -1,6 +1,7 @@
 package ricciliao.x.component.utils;
 
 import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import org.springframework.validation.BindingResult;
 import ricciliao.x.component.props.CommonProperties;
 import ricciliao.x.component.response.data.SimpleData;
@@ -35,31 +36,37 @@ public class CoreUtils {
         throw new IllegalStateException("Utility class");
     }
 
+    @Nullable
     public static LocalDateTime toLocalDateTime(Long milliseconds) {
 
         return Objects.isNull(milliseconds) ? null : toLocalDateTimeNotNull(milliseconds);
     }
 
+    @Nonnull
     public static LocalDateTime toLocalDateTimeNotNull(long milliseconds) {
 
         return LocalDateTime.ofInstant(Instant.ofEpochMilli(milliseconds), TIME_ZONE.toZoneId());
     }
 
+    @Nullable
     public static Long toLong(LocalDateTime localDateTime) {
 
         return Objects.isNull(localDateTime) ? null : toLongNotNull(localDateTime);
     }
 
+    @Nullable
     public static LocalDate toLocalDate(Long milliseconds) {
 
         return Objects.isNull(milliseconds) ? null : toLocalDateNotNull(milliseconds);
     }
 
+    @Nullable
     public static Long toLong(LocalDate localDate) {
 
         return Objects.isNull(localDate) ? null : CoreUtils.toLong(localDate.atTime(LocalTime.MIN));
     }
 
+    @Nonnull
     public static LocalDate toLocalDateNotNull(long milliseconds) {
 
         return CoreUtils.toLocalDateTimeNotNull(milliseconds).toLocalDate();
