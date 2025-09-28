@@ -20,12 +20,12 @@ public class RetryExecutorsImpl implements RetryExecutors {
                 retryResult.clear();
                 retryResult.setResult(restTask.executor(z));
             } catch (Exception e) {
-                retryResult.setServiceException(new UnexpectedException(SecondaryCodeEnum.BLANK, e));
+                retryResult.setException(new UnexpectedException(SecondaryCodeEnum.BLANK, e));
             }
             if (Objects.isNull(retrySelector) || !retrySelector.retry(retrySelector, retryResult, retryMeta)) {
-                if (Objects.nonNull(retryResult.getServiceException())) {
+                if (Objects.nonNull(retryResult.getException())) {
 
-                    throw retryResult.getServiceException();
+                    throw retryResult.getException();
                 }
 
                 return retryResult.getResult();

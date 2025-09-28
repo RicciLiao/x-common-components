@@ -5,7 +5,7 @@ import ricciliao.x.component.exception.UnexpectedException;
 public class RetryResult<T> {
 
     private T result;
-    private UnexpectedException serviceException;
+    private UnexpectedException exception;
 
     public T getResult() {
         return result;
@@ -15,16 +15,16 @@ public class RetryResult<T> {
         this.result = result;
     }
 
-    public UnexpectedException getServiceException() {
-        return serviceException;
+    public UnexpectedException getException() {
+        return exception;
     }
 
-    public void setServiceException(UnexpectedException serviceException) {
-        this.serviceException = serviceException;
+    public void setException(UnexpectedException exception) {
+        this.exception = exception;
     }
 
     public void clear() {
         this.result = null;
-        this.serviceException = null;
+        this.exception = null;
     }
 }
