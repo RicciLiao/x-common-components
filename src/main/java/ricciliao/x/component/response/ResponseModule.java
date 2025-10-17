@@ -9,12 +9,10 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import ricciliao.x.component.props.CommonProperties;
-import ricciliao.x.component.utils.CoreUtils;
 
 import java.io.IOException;
 import java.io.Serial;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Objects;
 
 public final class ResponseModule extends SimpleModule {
@@ -23,69 +21,36 @@ public final class ResponseModule extends SimpleModule {
 
     public ResponseModule(CommonProperties props) {
         super(VersionUtil.parseVersion(props.getVersion(), props.getGroup(), props.getArtifact()));
-        this.addSerializer(LocalDate.class, new LocalDateSerializer());
-        this.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer());
-        this.addDeserializer(LocalDate.class, new LocalDateDeserializer());
-        this.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer());
+        this.addSerializer(Instant.class, new InstantSerializer());
+        this.addDeserializer(Instant.class, new InstantDeserializer());
     }
 
-    static class LocalDateDeserializer extends JsonDeserializer<LocalDate> {
+    static class InstantDeserializer extends JsonDeserializer<Instant> {
         @Override
-        public LocalDate deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
+        public Instant deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
 
-            return CoreUtils.toLocalDate(jsonParser.readValueAs(Long.class));
+            return Instant.ofEpochMilli(jsonParser.readValueAs(Long.class));
         }
 
         @Override
-        public Class<?> handledType() {
+        public Class<Instant> handledType() {
 
-            return LocalDate.class;
+            return Instant.class;
         }
     }
 
-    public static class LocalDateSerializer extends JsonSerializer<LocalDate> {
+    public static class InstantSerializer extends JsonSerializer<Instant> {
         @Override
-        public void serialize(LocalDate localDate, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-            Long timestamp = CoreUtils.toLong(localDate);
-            if (Objects.nonNull(timestamp)) {
-                jsonGenerator.writeNumber(timestamp);
+        public void serialize(Instant instant, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+            if (Objects.nonNull(instant)) {
+                jsonGenerator.writeNumber(instant.toEpochMilli());
             }
         }
 
         @Override
-        public Class<LocalDate> handledType() {
+        public Class<Instant> handledType() {
 
-            return LocalDate.class;
-        }
-    }
-
-    static class LocalDateTimeDeserializer extends JsonDeserializer<LocalDateTime> {
-        @Override
-        public LocalDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
-
-            return CoreUtils.toLocalDateTime(jsonParser.readValueAs(Long.class));
-        }
-
-        @Override
-        public Class<LocalDateTime> handledType() {
-
-            return LocalDateTime.class;
-        }
-    }
-
-    static class LocalDateTimeSerializer extends JsonSerializer<LocalDateTime> {
-        @Override
-        public void serialize(LocalDateTime localDateTime, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-            Long timestamp = CoreUtils.toLong(localDateTime);
-            if (Objects.nonNull(timestamp)) {
-                jsonGenerator.writeNumber(timestamp);
-            }
-        }
-
-        @Override
-        public Class<LocalDateTime> handledType() {
-
-            return LocalDateTime.class;
+            return Instant.class;
         }
     }
 

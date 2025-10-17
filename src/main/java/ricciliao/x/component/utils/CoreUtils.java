@@ -1,15 +1,12 @@
 package ricciliao.x.component.utils;
 
-import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import org.springframework.validation.BindingResult;
 import ricciliao.x.component.props.CommonProperties;
 import ricciliao.x.component.response.data.SimpleData;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Collections;
 import java.util.List;
@@ -36,50 +33,15 @@ public class CoreUtils {
         throw new IllegalStateException("Utility class");
     }
 
-    @Nullable
-    public static LocalDateTime toLocalDateTime(Long milliseconds) {
-
-        return Objects.isNull(milliseconds) ? null : toLocalDateTimeNotNull(milliseconds);
-    }
-
-    @Nonnull
-    public static LocalDateTime toLocalDateTimeNotNull(long milliseconds) {
-
-        return LocalDateTime.ofInstant(Instant.ofEpochMilli(milliseconds), TIME_ZONE.toZoneId());
-    }
 
     @Nullable
-    public static Long toLong(LocalDateTime localDateTime) {
+    public static LocalDateTime toLdt(@Nullable Instant instant) {
+        if (Objects.isNull(instant)) {
 
-        return Objects.isNull(localDateTime) ? null : toLongNotNull(localDateTime);
-    }
+            return null;
+        }
 
-    @Nullable
-    public static LocalDate toLocalDate(Long milliseconds) {
-
-        return Objects.isNull(milliseconds) ? null : toLocalDateNotNull(milliseconds);
-    }
-
-    @Nullable
-    public static Long toLong(LocalDate localDate) {
-
-        return Objects.isNull(localDate) ? null : CoreUtils.toLong(localDate.atTime(LocalTime.MIN));
-    }
-
-    @Nonnull
-    public static LocalDate toLocalDateNotNull(long milliseconds) {
-
-        return CoreUtils.toLocalDateTimeNotNull(milliseconds).toLocalDate();
-    }
-
-    public static long toLongNotNull(@Nonnull LocalDateTime localDateTime) {
-
-        return localDateTime.atZone(TIME_ZONE.toZoneId()).toInstant().toEpochMilli();
-    }
-
-    public static long toLongNotNull(@Nonnull LocalDate localDate) {
-
-        return CoreUtils.toLongNotNull(localDate.atTime(LocalTime.MIN));
+        return LocalDateTime.ofInstant(instant, TIME_ZONE.toZoneId());
     }
 
     public static List<SimpleData.FieldViolation> toFieldViolation(BindingResult bindingResult) {

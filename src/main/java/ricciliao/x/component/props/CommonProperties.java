@@ -1,10 +1,7 @@
 package ricciliao.x.component.props;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
 import java.util.TimeZone;
 
-@ConfigurationProperties("ricciliao.x.common")
 public class CommonProperties extends ApplicationProperties {
 
     /**
@@ -21,6 +18,7 @@ public class CommonProperties extends ApplicationProperties {
     private String version;
     private String artifact;
     private String group;
+    private String cryptoPassword;
 
     public TimeZone getTimeZone() {
         return timeZone;
@@ -60,5 +58,13 @@ public class CommonProperties extends ApplicationProperties {
 
     public void setGroup(String group) {
         this.group = group;
+    }
+
+    public String getCryptoPassword() {
+        return cryptoPassword;
+    }
+
+    public void setCryptoPassword(String cryptoPassword) {
+        this.cryptoPassword = cryptoPassword;
     }
 }
