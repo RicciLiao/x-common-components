@@ -21,14 +21,13 @@ public class ResponseVoReferenceUtils {
         );
     }
 
-    public static <T extends ResponseData> ParameterizedTypeReference<Response<T>> forClassWithGenerics(Class<?> rawClass, Class<?>... generics) {
+    public static <T extends ResponseData> ParameterizedTypeReference<Response<T>> withGenerics(Class<?>... generics) {
+        ResolvableType currentType = ResolvableType.forClass(generics[generics.length - 1]);
+        for (int i = generics.length - 2; i >= 0; i--) {
+            currentType = ResolvableType.forClassWithGenerics(generics[i], currentType);
+        }
 
-        return ParameterizedTypeReference.forType(
-                ResolvableType.forClassWithGenerics(
-                        Response.class,
-                        ResolvableType.forClassWithGenerics(rawClass, generics)
-                ).getType()
-        );
+        return ParameterizedTypeReference.forType(ResolvableType.forClassWithGenerics(Response.class, currentType).getType());
     }
 
 }
