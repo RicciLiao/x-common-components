@@ -50,7 +50,7 @@ public class ResponseUtils {
     public static <T extends ResponseData> T safetyGetResponseData(ResponseEntity<Response<T>> entity) {
 
         return Optional.ofNullable(safetyGetResponse(entity))
-                .filter(body -> !body.isBlankData())
+                .filter(ResponseUtils::isBlankResponse)
                 .map(Response::getData)
                 .orElse(null);
     }
