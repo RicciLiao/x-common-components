@@ -1,22 +1,13 @@
-package ricciliao.x.component.response.code;
+package ricciliao.x.component.payload.response.code;
 
 
-import ricciliao.x.component.response.code.impl.SecondaryCodeEnum;
+import ricciliao.x.component.payload.response.code.impl.SecondaryCodeEnum;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
 public interface ResponseCode extends Serializable {
-
-    PrimaryCode getPrimary();
-
-    SecondaryCode getSecondary();
-
-    default boolean isSecondaryBlank() {
-
-        return Objects.isNull(this.getSecondary()) || this.getSecondary().getId() == SecondaryCodeEnum.BLANK.getId();
-    }
 
     static ResponseCode of(PrimaryCode primaryCode, SecondaryCode secondaryCode) {
 
@@ -36,6 +27,15 @@ public interface ResponseCode extends Serializable {
                 return secondaryCode;
             }
         };
+    }
+
+    PrimaryCode getPrimary();
+
+    SecondaryCode getSecondary();
+
+    default boolean isSecondaryBlank() {
+
+        return Objects.isNull(this.getSecondary()) || this.getSecondary().getId() == SecondaryCodeEnum.BLANK.getId();
     }
 
 }

@@ -7,24 +7,21 @@ import java.util.Objects;
 public class Challenge implements Serializable {
     @Serial
     private static final long serialVersionUID = -8886903616589026103L;
+    private ChallengeTypeStrategy strategy;
+    private String code;
+    private String image;
 
     public Challenge() {
     }
-
     public Challenge(ChallengeTypeStrategy strategy, String code) {
         this.strategy = strategy;
         this.code = code;
     }
-
     public Challenge(ChallengeTypeStrategy strategy, String code, String image) {
         this.strategy = strategy;
         this.code = code;
         this.image = image;
     }
-
-    private ChallengeTypeStrategy strategy;
-    private String code;
-    private String image;
 
     public ChallengeTypeStrategy getStrategy() {
         return strategy;

@@ -7,13 +7,11 @@ import java.util.List;
 
 public class RandomStringGenerator {
 
-    private final Builder builder;
-    private final SecureRandom random;
-
     private static final String LETTER_UPPER_POOL = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String LETTER_LOWER_POOL = "abcdefghijklmnopqrstuvwxyz";
     private static final String DIGIT_POOL = "0123456789";
-
+    private final Builder builder;
+    private final SecureRandom random;
     private String letterUpperPool = LETTER_UPPER_POOL;
     private String letterLowerPool = LETTER_LOWER_POOL;
     private String digitPool = DIGIT_POOL;
@@ -34,6 +32,11 @@ public class RandomStringGenerator {
                     DIGIT_POOL
                             .replace("1", "").replace("0", "");
         }
+    }
+
+    static Builder builder(int length) {
+
+        return new Builder(length);
     }
 
     private String generate() {
@@ -70,14 +73,9 @@ public class RandomStringGenerator {
         return sbr.toString();
     }
 
-    static Builder builder(int length) {
-
-        return new Builder(length);
-    }
-
     public static final class Builder {
-        private boolean clear = false;
         private final int length;
+        private boolean clear = false;
         private int atLeastLetter = 0;
         private int atLeastUpperLetter = 0;
         private int atLeastLowerLetter = 0;

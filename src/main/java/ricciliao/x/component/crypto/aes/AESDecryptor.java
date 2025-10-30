@@ -6,8 +6,8 @@ import ricciliao.x.component.crypto.CryptoResult;
 import ricciliao.x.component.crypto.CryptoUtils;
 import ricciliao.x.component.exception.AbstractException;
 import ricciliao.x.component.exception.UnexpectedException;
+import ricciliao.x.component.payload.response.code.impl.SecondaryCodeEnum;
 import ricciliao.x.component.props.CommonProperties;
-import ricciliao.x.component.response.code.impl.SecondaryCodeEnum;
 import ricciliao.x.component.utils.SpringBeanUtils;
 
 import javax.crypto.Cipher;

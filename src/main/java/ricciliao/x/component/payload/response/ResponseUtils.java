@@ -1,14 +1,14 @@
-package ricciliao.x.component.response;
+package ricciliao.x.component.payload.response;
 
 
 import jakarta.annotation.Nullable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import ricciliao.x.component.response.code.ResponseCode;
-import ricciliao.x.component.response.code.impl.ResponseCodeEnum;
-import ricciliao.x.component.response.data.ResponseData;
-import ricciliao.x.component.response.data.SimpleData;
+import ricciliao.x.component.payload.PayloadData;
+import ricciliao.x.component.payload.SimpleData;
+import ricciliao.x.component.payload.response.code.ResponseCode;
+import ricciliao.x.component.payload.response.code.impl.ResponseCodeEnum;
 import ricciliao.x.component.utils.CoreUtils;
 
 import java.util.Optional;
@@ -19,22 +19,22 @@ public class ResponseUtils {
         throw new IllegalStateException("Utility class");
     }
 
-    public static Response<ResponseData> success() {
+    public static Response<PayloadData> success() {
 
         return Response.of(ResponseCodeEnum.SUCCESS, SimpleData.blank());
     }
 
-    public static <T extends ResponseData> Response<T> success(T data) {
+    public static <T extends PayloadData> Response<T> success(T data) {
 
         return Response.of(ResponseCodeEnum.SUCCESS, data);
     }
 
-    public static Response<ResponseData> unexpected() {
+    public static Response<PayloadData> unexpected() {
 
         return Response.of(ResponseCodeEnum.UNEXPECTED_ERROR, SimpleData.blank());
     }
 
-    public static Response<ResponseData> bindingResult(ResponseCode code, BindingResult bindingResult) {
+    public static Response<PayloadData> bindingResult(ResponseCode code, BindingResult bindingResult) {
 
         return Response.of(code, SimpleData.of(CoreUtils.toFieldViolation(bindingResult)));
     }
@@ -47,7 +47,7 @@ public class ResponseUtils {
     }
 
     @Nullable
-    public static <T extends ResponseData> T safetyGetResponseData(ResponseEntity<Response<T>> entity) {
+    public static <T extends PayloadData> T safetyGetResponseData(ResponseEntity<Response<T>> entity) {
 
         return Optional.ofNullable(safetyGetResponse(entity))
                 .filter(ResponseUtils::isBlankResponse)
@@ -56,7 +56,7 @@ public class ResponseUtils {
     }
 
     @Nullable
-    public static <T extends ResponseData> Response<T> safetyGetResponse(ResponseEntity<Response<T>> entity) {
+    public static <T extends PayloadData> Response<T> safetyGetResponse(ResponseEntity<Response<T>> entity) {
 
         return Optional.ofNullable(entity)
                 .filter(e -> HttpStatus.OK.equals(e.getStatusCode()))

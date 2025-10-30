@@ -1,4 +1,4 @@
-package ricciliao.x.component.response;
+package ricciliao.x.component.payload.response;
 
 import jakarta.annotation.Nonnull;
 import jakarta.servlet.http.HttpServletResponse;
@@ -9,13 +9,13 @@ import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.method.support.ModelAndViewContainer;
-import ricciliao.x.component.response.code.PrimaryCode;
-import ricciliao.x.component.response.code.ResponseCode;
-import ricciliao.x.component.response.code.SecondaryCode;
-import ricciliao.x.component.response.code.impl.PrimaryCodeEnum;
-import ricciliao.x.component.response.code.impl.SecondaryCodeEnum;
-import ricciliao.x.component.response.data.ResponseData;
-import ricciliao.x.component.response.data.SimpleData;
+import ricciliao.x.component.payload.PayloadData;
+import ricciliao.x.component.payload.SimpleData;
+import ricciliao.x.component.payload.response.code.PrimaryCode;
+import ricciliao.x.component.payload.response.code.ResponseCode;
+import ricciliao.x.component.payload.response.code.SecondaryCode;
+import ricciliao.x.component.payload.response.code.impl.PrimaryCodeEnum;
+import ricciliao.x.component.payload.response.code.impl.SecondaryCodeEnum;
 
 import java.io.Serial;
 import java.lang.reflect.Type;
@@ -65,7 +65,7 @@ public class ResponseValueHandler implements HandlerMethodReturnValueHandler {
 
             return;
         }
-        Response<ResponseData> response;
+        Response<PayloadData> response;
         if (Objects.isNull(returnValue)) {
             response = Response.of(unkownResponseCode, SimpleData.blank());
         } else if (returnValue instanceof Response) {

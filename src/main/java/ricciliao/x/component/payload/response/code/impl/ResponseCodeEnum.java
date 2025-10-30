@@ -1,9 +1,9 @@
-package ricciliao.x.component.response.code.impl;
+package ricciliao.x.component.payload.response.code.impl;
 
 
-import ricciliao.x.component.response.code.PrimaryCode;
-import ricciliao.x.component.response.code.ResponseCode;
-import ricciliao.x.component.response.code.SecondaryCode;
+import ricciliao.x.component.payload.response.code.PrimaryCode;
+import ricciliao.x.component.payload.response.code.ResponseCode;
+import ricciliao.x.component.payload.response.code.SecondaryCode;
 
 public enum ResponseCodeEnum implements ResponseCode {
     SUCCESS(PrimaryCodeEnum.SUCCESS, SecondaryCodeEnum.BLANK),

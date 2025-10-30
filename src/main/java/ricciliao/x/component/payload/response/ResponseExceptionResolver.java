@@ -1,4 +1,4 @@
-package ricciliao.x.component.response;
+package ricciliao.x.component.payload.response;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
@@ -11,8 +11,8 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.AbstractHandlerMethodExceptionResolver;
 import ricciliao.x.component.exception.AbstractException;
-import ricciliao.x.component.response.code.ResponseCode;
-import ricciliao.x.component.response.data.ResponseData;
+import ricciliao.x.component.payload.PayloadData;
+import ricciliao.x.component.payload.response.code.ResponseCode;
 import ricciliao.x.component.sneaky.SneakyThrowUtils;
 import ricciliao.x.log.api.XLogger;
 import ricciliao.x.log.api.XLoggerFactory;
@@ -34,7 +34,7 @@ public class ResponseExceptionResolver extends AbstractHandlerMethodExceptionRes
                                                         @Nonnull HttpServletResponse response,
                                                         @Nullable HandlerMethod handler,
                                                         @Nonnull Exception ex) {
-        Response<ResponseData> xResponse;
+        Response<PayloadData> xResponse;
         if (ex instanceof AbstractException aex) {
             xResponse = Response.of(ResponseCode.of(aex.getPrimaryCode(), aex.getSecondaryCode()), aex.getResponseData());
         } else {

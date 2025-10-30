@@ -1,4 +1,4 @@
-package ricciliao.x.component.response;
+package ricciliao.x.component.payload.response;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;

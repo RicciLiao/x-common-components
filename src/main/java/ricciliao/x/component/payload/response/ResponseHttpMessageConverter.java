@@ -1,4 +1,4 @@
-package ricciliao.x.component.response;
+package ricciliao.x.component.payload.response;
 
 
 import com.fasterxml.jackson.databind.JavaType;
@@ -15,19 +15,19 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.AbstractGenericHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
-import ricciliao.x.component.response.code.PrimaryCode;
-import ricciliao.x.component.response.code.ResponseCode;
-import ricciliao.x.component.response.code.SecondaryCode;
-import ricciliao.x.component.response.code.impl.ResponseCodeEnum;
-import ricciliao.x.component.response.code.impl.SecondaryCodeEnum;
-import ricciliao.x.component.response.data.ResponseData;
-import ricciliao.x.component.response.data.SimpleData;
+import ricciliao.x.component.payload.PayloadData;
+import ricciliao.x.component.payload.SimpleData;
+import ricciliao.x.component.payload.response.code.PrimaryCode;
+import ricciliao.x.component.payload.response.code.ResponseCode;
+import ricciliao.x.component.payload.response.code.SecondaryCode;
+import ricciliao.x.component.payload.response.code.impl.ResponseCodeEnum;
+import ricciliao.x.component.payload.response.code.impl.SecondaryCodeEnum;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Objects;
 
-public class ResponseHttpMessageConverter extends AbstractGenericHttpMessageConverter<Response<ResponseData>> {
+public class ResponseHttpMessageConverter extends AbstractGenericHttpMessageConverter<Response<PayloadData>> {
 
     private final ObjectMapper objectMapper;
 
@@ -43,9 +43,9 @@ public class ResponseHttpMessageConverter extends AbstractGenericHttpMessageConv
     }
 
     @Override
-    protected void writeInternal(@Nonnull Response<ResponseData> response, Type type, @Nonnull HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
+    protected void writeInternal(@Nonnull Response<PayloadData> response, Type type, @Nonnull HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
         ResponseCode code;
-        ResponseData data;
+        PayloadData data;
         if (Objects.isNull(response.getCode())) {
             code = ResponseCodeEnum.UNEXPECTED_ERROR;
             data = SimpleData.blank();
@@ -73,20 +73,20 @@ public class ResponseHttpMessageConverter extends AbstractGenericHttpMessageConv
 
     @Nonnull
     @Override
-    protected Response<ResponseData> readInternal(@Nonnull Class<? extends Response<ResponseData>> clazz,
-                                                  @Nonnull HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
+    protected Response<PayloadData> readInternal(@Nonnull Class<? extends Response<PayloadData>> clazz,
+                                                 @Nonnull HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
 
         return this.readResponse(this.getJavaType(clazz, null), inputMessage);
     }
 
     @Nonnull
     @Override
-    public Response<ResponseData> read(@Nonnull Type type, Class<?> contextClass, @Nonnull HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
+    public Response<PayloadData> read(@Nonnull Type type, Class<?> contextClass, @Nonnull HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
 
         return this.readResponse(this.getJavaType(type, contextClass), inputMessage);
     }
 
-    private Response<ResponseData> readResponse(JavaType javaType, HttpInputMessage inputMessage) throws IOException {
+    private Response<PayloadData> readResponse(JavaType javaType, HttpInputMessage inputMessage) throws IOException {
         JsonNode response = objectMapper.readTree(inputMessage.getBody());
         if (!this.isValidatedResponse(response)) {
 
@@ -104,11 +104,11 @@ public class ResponseHttpMessageConverter extends AbstractGenericHttpMessageConv
             code = ResponseCode.of(PrimaryCode.of(pcId, ""), SecondaryCode.of(scId, message));
         }
         //data
-        ResponseData data;
+        PayloadData data;
         if (!response.hasNonNull("data")
                 || response.get("data").isNull()
                 || (response.get("data").isContainerNode() && response.get("data").isEmpty())) {
-            data =  SimpleData.blank();
+            data = SimpleData.blank();
         } else {
             data = objectMapper.treeToValue(response.get("data"), javaType.containedType(0));
         }

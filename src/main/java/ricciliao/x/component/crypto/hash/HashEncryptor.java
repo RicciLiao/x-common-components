@@ -4,7 +4,7 @@ import ricciliao.x.component.crypto.AbstractCrypto;
 import ricciliao.x.component.crypto.CryptoResult;
 import ricciliao.x.component.exception.AbstractException;
 import ricciliao.x.component.exception.UnexpectedException;
-import ricciliao.x.component.response.code.impl.SecondaryCodeEnum;
+import ricciliao.x.component.payload.response.code.impl.SecondaryCodeEnum;
 
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;

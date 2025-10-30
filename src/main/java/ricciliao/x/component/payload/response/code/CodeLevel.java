@@ -1,4 +1,4 @@
-package ricciliao.x.component.response.code;
+package ricciliao.x.component.payload.response.code;
 
 import java.io.Serializable;
 

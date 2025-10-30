@@ -2,10 +2,10 @@ package ricciliao.x.component.exception;
 
 
 import jakarta.annotation.Nonnull;
-import ricciliao.x.component.response.code.PrimaryCode;
-import ricciliao.x.component.response.code.SecondaryCode;
-import ricciliao.x.component.response.data.ResponseData;
-import ricciliao.x.component.response.data.SimpleData;
+import ricciliao.x.component.payload.PayloadData;
+import ricciliao.x.component.payload.SimpleData;
+import ricciliao.x.component.payload.response.code.PrimaryCode;
+import ricciliao.x.component.payload.response.code.SecondaryCode;
 
 import java.io.Serial;
 
@@ -27,7 +27,7 @@ public abstract class AbstractException extends Exception {
 
     public abstract PrimaryCode getPrimaryCode();
 
-    public ResponseData getResponseData() {
+    public PayloadData getResponseData() {
 
         return SimpleData.blank();
     }

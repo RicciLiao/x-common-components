@@ -1,14 +1,14 @@
-package ricciliao.x.component.response.code;
+package ricciliao.x.component.payload.response.code;
 
 import java.io.Serial;
 
-public interface SecondaryCode extends CodeLevel {
+public interface PrimaryCode extends CodeLevel {
 
-    static SecondaryCode of(int id, String message) {
+    static PrimaryCode of(int id, String message) {
 
-        return new SecondaryCode() {
+        return new PrimaryCode() {
             @Serial
-            private static final long serialVersionUID = -1340789690815887485L;
+            private static final long serialVersionUID = -7635197187959251273L;
 
             @Override
             public int getId() {

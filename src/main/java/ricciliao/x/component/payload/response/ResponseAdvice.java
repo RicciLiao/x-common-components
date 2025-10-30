@@ -1,4 +1,4 @@
-package ricciliao.x.component.response;
+package ricciliao.x.component.payload.response;
 
 
 import jakarta.annotation.Nonnull;
@@ -8,18 +8,18 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
-import ricciliao.x.component.response.code.PrimaryCode;
-import ricciliao.x.component.response.code.ResponseCode;
-import ricciliao.x.component.response.code.SecondaryCode;
-import ricciliao.x.component.response.code.impl.PrimaryCodeEnum;
-import ricciliao.x.component.response.code.impl.SecondaryCodeEnum;
-import ricciliao.x.component.response.data.ResponseData;
-import ricciliao.x.component.response.data.SimpleData;
+import ricciliao.x.component.payload.PayloadData;
+import ricciliao.x.component.payload.SimpleData;
+import ricciliao.x.component.payload.response.code.PrimaryCode;
+import ricciliao.x.component.payload.response.code.ResponseCode;
+import ricciliao.x.component.payload.response.code.SecondaryCode;
+import ricciliao.x.component.payload.response.code.impl.PrimaryCodeEnum;
+import ricciliao.x.component.payload.response.code.impl.SecondaryCodeEnum;
 
 import java.io.Serial;
 import java.util.Objects;
 
-public class ResponseAdvice implements ResponseBodyAdvice<Response<? extends ResponseData>> {
+public class ResponseAdvice implements ResponseBodyAdvice<Response<? extends PayloadData>> {
 
     private final ResponseCode unkownResponseCode;
 
@@ -50,15 +50,15 @@ public class ResponseAdvice implements ResponseBodyAdvice<Response<? extends Res
     }
 
     @Override
-    public Response<? extends ResponseData> beforeBodyWrite(Response<? extends ResponseData> body,
-                                                            @Nonnull MethodParameter returnType,
-                                                            @Nonnull MediaType selectedContentType,
-                                                            @Nonnull Class<? extends HttpMessageConverter<?>> selectedConverterType,
-                                                            @Nonnull ServerHttpRequest request,
-                                                            @Nonnull ServerHttpResponse response) {
+    public Response<? extends PayloadData> beforeBodyWrite(Response<? extends PayloadData> body,
+                                                           @Nonnull MethodParameter returnType,
+                                                           @Nonnull MediaType selectedContentType,
+                                                           @Nonnull Class<? extends HttpMessageConverter<?>> selectedConverterType,
+                                                           @Nonnull ServerHttpRequest request,
+                                                           @Nonnull ServerHttpResponse response) {
         if (Objects.isNull(body)) {
 
-            return  Response.of(unkownResponseCode, SimpleData.blank());
+            return Response.of(unkownResponseCode, SimpleData.blank());
         }
 
         return body;

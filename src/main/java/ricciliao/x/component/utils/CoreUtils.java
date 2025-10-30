@@ -2,8 +2,8 @@ package ricciliao.x.component.utils;
 
 import jakarta.annotation.Nullable;
 import org.springframework.validation.BindingResult;
+import ricciliao.x.component.payload.SimpleData;
 import ricciliao.x.component.props.CommonProperties;
-import ricciliao.x.component.response.data.SimpleData;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

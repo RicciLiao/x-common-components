@@ -26,15 +26,14 @@ public interface RetrySelector<T> {
     }
 
     class RetryMeta {
+        private int maxAttempts;
+        private int interval;
+        private int attempt;
         public RetryMeta(int maxAttempts, int interval) {
             this.maxAttempts = maxAttempts;
             this.interval = interval;
             this.attempt = 1;
         }
-
-        private int maxAttempts;
-        private int interval;
-        private int attempt;
 
         public int getMaxAttempts() {
             return maxAttempts;

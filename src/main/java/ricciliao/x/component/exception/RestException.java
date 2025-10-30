@@ -2,9 +2,9 @@ package ricciliao.x.component.exception;
 
 
 import jakarta.annotation.Nonnull;
-import ricciliao.x.component.response.code.PrimaryCode;
-import ricciliao.x.component.response.code.SecondaryCode;
-import ricciliao.x.component.response.code.impl.PrimaryCodeEnum;
+import ricciliao.x.component.payload.response.code.PrimaryCode;
+import ricciliao.x.component.payload.response.code.SecondaryCode;
+import ricciliao.x.component.payload.response.code.impl.PrimaryCodeEnum;
 
 import java.io.Serial;
 

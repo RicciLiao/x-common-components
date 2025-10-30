@@ -6,7 +6,7 @@ import ricciliao.x.component.executor.RetryExecutors;
 import ricciliao.x.component.executor.RetryJob;
 import ricciliao.x.component.executor.RetryResult;
 import ricciliao.x.component.executor.RetrySelector;
-import ricciliao.x.component.response.code.impl.SecondaryCodeEnum;
+import ricciliao.x.component.payload.response.code.impl.SecondaryCodeEnum;
 
 import java.util.Objects;
 

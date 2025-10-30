@@ -10,12 +10,12 @@ import ricciliao.x.component.props.YamlPropertiesReader;
 
 public abstract class PropsBeanDefinitionRegistryPostProcessor<T> implements BeanDefinitionRegistryPostProcessor {
 
+    private final T props;
+
     protected PropsBeanDefinitionRegistryPostProcessor(Class<T> propsClass) {
         ConfigurationProperties propsPrefix = propsClass.getAnnotation(ConfigurationProperties.class);
         this.props = new YamlPropertiesReader().getProperty(propsPrefix.value(), propsClass);
     }
-
-    private final T props;
 
     public T getProps() {
         return props;

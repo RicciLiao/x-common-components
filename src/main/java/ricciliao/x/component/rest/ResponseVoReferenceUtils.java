@@ -2,8 +2,8 @@ package ricciliao.x.component.rest;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.ResolvableType;
-import ricciliao.x.component.response.Response;
-import ricciliao.x.component.response.data.ResponseData;
+import ricciliao.x.component.payload.PayloadData;
+import ricciliao.x.component.payload.response.Response;
 
 public class ResponseVoReferenceUtils {
 
@@ -11,7 +11,7 @@ public class ResponseVoReferenceUtils {
         throw new IllegalStateException("Utility class");
     }
 
-    public static <T extends ResponseData> ParameterizedTypeReference<Response<T>> withGenerics(Class<T> generic) {
+    public static <T extends PayloadData> ParameterizedTypeReference<Response<T>> withGenerics(Class<T> generic) {
 
         return ParameterizedTypeReference.forType(
                 ResolvableType.forClassWithGenerics(
@@ -21,7 +21,7 @@ public class ResponseVoReferenceUtils {
         );
     }
 
-    public static <T extends ResponseData> ParameterizedTypeReference<Response<T>> withGenerics(Class<?>... generics) {
+    public static <T extends PayloadData> ParameterizedTypeReference<Response<T>> withGenerics(Class<?>... generics) {
         ResolvableType currentType = ResolvableType.forClass(generics[generics.length - 1]);
         for (int i = generics.length - 2; i >= 0; i--) {
             currentType = ResolvableType.forClassWithGenerics(generics[i], currentType);

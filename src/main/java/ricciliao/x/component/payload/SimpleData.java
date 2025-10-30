@@ -1,11 +1,11 @@
-package ricciliao.x.component.response.data;
+package ricciliao.x.component.payload;
 
 
 import java.util.List;
 
-public interface SimpleData extends ResponseData {
+public interface SimpleData extends PayloadData {
 
-    static <T extends ResponseData> Collection<T> of(List<T> result) {
+    static <T extends PayloadData> Collection<T> of(List<T> result) {
 
         return new Collection<>(result);
     }
@@ -30,9 +30,9 @@ public interface SimpleData extends ResponseData {
         return new FieldViolation(fieldName, message);
     }
 
-    record Collection<T extends ResponseData>(List<T> result) implements SimpleData {
+    record Collection<T extends PayloadData>(List<T> result) implements SimpleData {
 
-        public static <T extends ResponseData> Collection<T> data(List<T> result) {
+        public static <T extends PayloadData> Collection<T> data(List<T> result) {
 
             return new Collection<>(result);
         }

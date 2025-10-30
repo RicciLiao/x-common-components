@@ -9,6 +9,7 @@ public class CryptoConstants {
     public static final int IV_BYTES_LENGTH = 12;
     public static final int SECRET_KEY_BYTES_LENGTH = 256;
     public static final int TAG_BYTES_LENGTH = 16;
+
     private CryptoConstants() {
         throw new IllegalStateException("Utility class");
     }
