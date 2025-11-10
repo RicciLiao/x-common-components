@@ -11,6 +11,7 @@ import ricciliao.x.component.payload.response.code.ResponseCode;
 import ricciliao.x.component.payload.response.code.impl.ResponseCodeEnum;
 import ricciliao.x.component.utils.CoreUtils;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class ResponseUtils {
@@ -41,16 +42,14 @@ public class ResponseUtils {
 
     public static boolean isBlankResponse(Response<?> response) {
 
-        return Optional.ofNullable(response)
-                .map(Response::isBlankData)
-                .isEmpty();
+        return Objects.isNull(response) || response.isBlankData();
     }
 
     @Nullable
     public static <T extends PayloadData> T safetyGetResponseData(ResponseEntity<Response<T>> entity) {
 
         return Optional.ofNullable(safetyGetResponse(entity))
-                .filter(ResponseUtils::isBlankResponse)
+                .filter(tResponse -> !ResponseUtils.isBlankResponse(tResponse))
                 .map(Response::getData)
                 .orElse(null);
     }
