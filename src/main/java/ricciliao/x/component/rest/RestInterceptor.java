@@ -8,7 +8,7 @@ import org.springframework.http.client.ClientHttpResponse;
 
 import java.io.IOException;
 
-public class RestTemplateInterceptor implements ClientHttpRequestInterceptor {
+public class RestInterceptor implements ClientHttpRequestInterceptor {
 
 
     @Nonnull

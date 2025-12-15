@@ -28,12 +28,12 @@ public class CommonProperties extends ApplicationProperties {
         this.timeZone = timeZone;
     }
 
-    public String getConsumer() {
-        return consumer;
-    }
-
     public void setConsumer(String consumer) {
         this.consumer = consumer;
+    }
+
+    public String getConsumer() {
+        return consumer;
     }
 
     public String getVersion() {
