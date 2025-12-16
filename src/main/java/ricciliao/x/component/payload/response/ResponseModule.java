@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import ricciliao.x.component.props.CommonProperties;
+import org.springframework.boot.info.BuildProperties;
 
 import java.io.IOException;
 import java.io.Serial;
@@ -19,7 +19,7 @@ public final class ResponseModule extends SimpleModule {
     @Serial
     private static final long serialVersionUID = -3818799819306161781L;
 
-    public ResponseModule(CommonProperties props) {
+    public ResponseModule(BuildProperties props) {
         super(VersionUtil.parseVersion(props.getVersion(), props.getGroup(), props.getArtifact()));
         this.addSerializer(Instant.class, new InstantSerializer());
         this.addDeserializer(Instant.class, new InstantDeserializer());
