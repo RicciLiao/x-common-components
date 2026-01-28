@@ -11,6 +11,7 @@ public enum PrimaryCodeEnum implements PrimaryCode {
     CONCURRENT_ERROR(3, "Concurrent error"),
     REST_ERROR(4, "Rest Call error"),
     DATA_ERROR(5, "Data error"),
+    DUPLICATE_ERROR(6, "Duplicate error"),
     UNEXPECTED_ERROR(9, "Unexpected error."),
     ;
 

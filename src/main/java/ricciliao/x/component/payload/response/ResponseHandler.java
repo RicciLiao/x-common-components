@@ -10,31 +10,30 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import ricciliao.x.component.payload.PayloadData;
-import ricciliao.x.component.payload.SimpleData;
+import ricciliao.x.component.payload.SimplePayloadData;
 import ricciliao.x.component.payload.response.code.PrimaryCode;
 import ricciliao.x.component.payload.response.code.ResponseCode;
 import ricciliao.x.component.payload.response.code.SecondaryCode;
-import ricciliao.x.component.payload.response.code.impl.PrimaryCodeEnum;
 import ricciliao.x.component.payload.response.code.impl.SecondaryCodeEnum;
 
 import java.io.Serial;
 import java.lang.reflect.Type;
 import java.util.Objects;
 
-public class ResponseValueHandler implements HandlerMethodReturnValueHandler {
+public class ResponseHandler implements HandlerMethodReturnValueHandler {
 
-    private final ResponseCode unkownResponseCode;
+    private final ResponseCode emptyResponseCode;
     private final ResponseHttpMessageConverter converter;
 
-    public ResponseValueHandler(ResponseHttpMessageConverter converter) {
-        this.unkownResponseCode = new ResponseCode() {
+    public ResponseHandler(ResponseHttpMessageConverter converter) {
+        this.emptyResponseCode = new ResponseCode() {
             @Serial
             private static final long serialVersionUID = 5384926569899776189L;
 
             @Override
             public PrimaryCode getPrimary() {
 
-                return PrimaryCodeEnum.UNEXPECTED_ERROR;
+                return PrimaryCode.of(10, "Empty response");
             }
 
             @Override
@@ -67,7 +66,7 @@ public class ResponseValueHandler implements HandlerMethodReturnValueHandler {
         }
         Response<PayloadData> response;
         if (Objects.isNull(returnValue)) {
-            response = Response.of(unkownResponseCode, SimpleData.blank());
+            response = Response.of(emptyResponseCode, SimplePayloadData.blank());
         } else if (returnValue instanceof Response) {
             response = Response.of(((Response<?>) returnValue).getCode(), ((Response<?>) returnValue).getData());
         } else {

@@ -3,7 +3,7 @@ package ricciliao.x.component.payload.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import ricciliao.x.component.payload.PayloadData;
-import ricciliao.x.component.payload.SimpleData;
+import ricciliao.x.component.payload.SimplePayloadData;
 import ricciliao.x.component.payload.response.code.ResponseCode;
 
 import java.io.Serial;
@@ -48,7 +48,7 @@ public class Response<T extends PayloadData> implements Serializable {
 
     public boolean isBlankData() {
 
-        return Objects.isNull(this.data) || this.data instanceof SimpleData.Blank;
+        return Objects.isNull(this.data) || this.data instanceof SimplePayloadData.Blank;
     }
 
 }

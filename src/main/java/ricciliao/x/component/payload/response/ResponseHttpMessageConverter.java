@@ -16,7 +16,7 @@ import org.springframework.http.converter.AbstractGenericHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 import ricciliao.x.component.payload.PayloadData;
-import ricciliao.x.component.payload.SimpleData;
+import ricciliao.x.component.payload.SimplePayloadData;
 import ricciliao.x.component.payload.response.code.PrimaryCode;
 import ricciliao.x.component.payload.response.code.ResponseCode;
 import ricciliao.x.component.payload.response.code.SecondaryCode;
@@ -48,11 +48,11 @@ public class ResponseHttpMessageConverter extends AbstractGenericHttpMessageConv
         PayloadData data;
         if (Objects.isNull(response.getCode())) {
             code = ResponseCodeEnum.UNEXPECTED_ERROR;
-            data = SimpleData.blank();
+            data = SimplePayloadData.blank();
         } else {
             code = response.getCode();
             if (Objects.isNull(response.getData())) {
-                data = SimpleData.blank();
+                data = SimplePayloadData.blank();
             } else {
                 data = response.getData();
             }
@@ -108,7 +108,7 @@ public class ResponseHttpMessageConverter extends AbstractGenericHttpMessageConv
         if (!response.hasNonNull("data")
                 || response.get("data").isNull()
                 || (response.get("data").isContainerNode() && response.get("data").isEmpty())) {
-            data = SimpleData.blank();
+            data = SimplePayloadData.blank();
         } else {
             data = objectMapper.treeToValue(response.get("data"), javaType.containedType(0));
         }

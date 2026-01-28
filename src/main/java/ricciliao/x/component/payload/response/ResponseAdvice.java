@@ -9,7 +9,7 @@ import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import ricciliao.x.component.payload.PayloadData;
-import ricciliao.x.component.payload.SimpleData;
+import ricciliao.x.component.payload.SimplePayloadData;
 import ricciliao.x.component.payload.response.code.PrimaryCode;
 import ricciliao.x.component.payload.response.code.ResponseCode;
 import ricciliao.x.component.payload.response.code.SecondaryCode;
@@ -58,7 +58,7 @@ public class ResponseAdvice implements ResponseBodyAdvice<Response<? extends Pay
                                                            @Nonnull ServerHttpResponse response) {
         if (Objects.isNull(body)) {
 
-            return Response.of(unkownResponseCode, SimpleData.blank());
+            return Response.of(unkownResponseCode, SimplePayloadData.blank());
         }
 
         return body;

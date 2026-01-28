@@ -3,7 +3,7 @@ package ricciliao.x.component.exception;
 
 import jakarta.annotation.Nonnull;
 import ricciliao.x.component.payload.PayloadData;
-import ricciliao.x.component.payload.SimpleData;
+import ricciliao.x.component.payload.SimplePayloadData;
 import ricciliao.x.component.payload.response.code.PrimaryCode;
 import ricciliao.x.component.payload.response.code.SecondaryCode;
 
@@ -29,7 +29,7 @@ public abstract class AbstractException extends Exception {
 
     public PayloadData getResponseData() {
 
-        return SimpleData.blank();
+        return SimplePayloadData.blank();
     }
 
     public SecondaryCode getSecondaryCode() {

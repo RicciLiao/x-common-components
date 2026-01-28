@@ -3,7 +3,7 @@ package ricciliao.x.component.exception;
 
 import jakarta.annotation.Nonnull;
 import ricciliao.x.component.payload.PayloadData;
-import ricciliao.x.component.payload.SimpleData;
+import ricciliao.x.component.payload.SimplePayloadData;
 import ricciliao.x.component.payload.response.code.PrimaryCode;
 import ricciliao.x.component.payload.response.code.SecondaryCode;
 import ricciliao.x.component.payload.response.code.impl.PrimaryCodeEnum;
@@ -16,17 +16,17 @@ public class ParameterException extends AbstractException {
     @Serial
     private static final long serialVersionUID = -6737562056794016208L;
 
-    private final SimpleData.Collection<SimpleData.FieldViolation> collection;
+    private final SimplePayloadData.Collection<SimplePayloadData.FieldViolation> collection;
 
     public ParameterException(@Nonnull SecondaryCode secondaryCode,
-                              List<SimpleData.FieldViolation> list) {
+                              List<SimplePayloadData.FieldViolation> list) {
         super(secondaryCode);
-        this.collection = SimpleData.Collection.data(list);
+        this.collection = SimplePayloadData.Collection.data(list);
     }
 
     public ParameterException(@Nonnull SecondaryCode secondaryCode) {
         super(secondaryCode);
-        this.collection = SimpleData.Collection.data(Collections.emptyList());
+        this.collection = SimplePayloadData.Collection.data(Collections.emptyList());
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ParameterException extends AbstractException {
         return PrimaryCodeEnum.PARAMETER_ERROR;
     }
 
-    public SimpleData.Collection<SimpleData.FieldViolation> getCollection() {
+    public SimplePayloadData.Collection<SimplePayloadData.FieldViolation> getCollection() {
         return collection;
     }
 

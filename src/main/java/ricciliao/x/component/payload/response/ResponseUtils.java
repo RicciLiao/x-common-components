@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import ricciliao.x.component.payload.PayloadData;
-import ricciliao.x.component.payload.SimpleData;
+import ricciliao.x.component.payload.SimplePayloadData;
 import ricciliao.x.component.payload.response.code.ResponseCode;
 import ricciliao.x.component.payload.response.code.impl.ResponseCodeEnum;
 import ricciliao.x.component.utils.CoreUtils;
@@ -22,7 +22,7 @@ public class ResponseUtils {
 
     public static Response<PayloadData> success() {
 
-        return Response.of(ResponseCodeEnum.SUCCESS, SimpleData.blank());
+        return Response.of(ResponseCodeEnum.SUCCESS, SimplePayloadData.blank());
     }
 
     public static <T extends PayloadData> Response<T> success(T data) {
@@ -32,12 +32,12 @@ public class ResponseUtils {
 
     public static Response<PayloadData> unexpected() {
 
-        return Response.of(ResponseCodeEnum.UNEXPECTED_ERROR, SimpleData.blank());
+        return Response.of(ResponseCodeEnum.UNEXPECTED_ERROR, SimplePayloadData.blank());
     }
 
     public static Response<PayloadData> bindingResult(ResponseCode code, BindingResult bindingResult) {
 
-        return Response.of(code, SimpleData.of(CoreUtils.toFieldViolation(bindingResult)));
+        return Response.of(code, SimplePayloadData.of(CoreUtils.toFieldViolation(bindingResult)));
     }
 
     public static boolean isBlankResponse(Response<?> response) {
