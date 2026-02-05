@@ -13,4 +13,8 @@ public interface LoggerPo extends Serializable {
 
     void setActionCd(Character actionCd);
 
+    Long getActionBy();
+
+    void setActionBy(Long actionBy);
+
 }

@@ -24,4 +24,10 @@ public interface PrimaryCode extends CodeLevel {
         };
     }
 
+    // 协变返回类型(Covariant Return Type) CodeLevel ---> PrimaryCode
+    @Override
+    default PrimaryCode format(Object... args) {
+
+        return (PrimaryCode) CodeLevel.super.format(args);
+    }
 }
