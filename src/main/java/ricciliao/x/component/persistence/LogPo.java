@@ -3,7 +3,7 @@ package ricciliao.x.component.persistence;
 import java.io.Serializable;
 import java.time.Instant;
 
-public interface LoggerPo extends Serializable {
+public interface LogPo extends Serializable {
 
     Instant getActionDtm();
 
@@ -12,9 +12,5 @@ public interface LoggerPo extends Serializable {
     Character getActionCd();
 
     void setActionCd(Character actionCd);
-
-    Long getActionBy();
-
-    void setActionBy(Long actionBy);
 
 }
