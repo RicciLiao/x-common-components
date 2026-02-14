@@ -1,6 +1,6 @@
 package ricciliao.x.component.props;
 
-public class CommonProperties extends ApplicationProperties {
+public class CommonProperties implements ApplicationProperties {
 
     /**
      * Application unique name, will retrieve from BuildProperties
