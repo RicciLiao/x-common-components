@@ -29,4 +29,11 @@ public class UnexpectedException extends AbstractException {
 
         return PrimaryCodeEnum.UNEXPECTED_ERROR;
     }
+
+    @Override
+    public synchronized Throwable getCause() {
+
+        return this.throwable;
+    }
+
 }

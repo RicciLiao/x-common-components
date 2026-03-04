@@ -1,4 +1,4 @@
-package ricciliao.x.component.crypto;
+package ricciliao.x.component.security.crypto;
 
 public class CryptoResult {
 
@@ -20,6 +20,11 @@ public class CryptoResult {
     public static CryptoResult hash(byte[] salt, byte[] data) {
 
         return new CryptoResult(salt, new byte[0], data);
+    }
+
+    public static CryptoResult rsa(byte[] data) {
+
+        return new CryptoResult(new byte[0], new byte[0], data);
     }
 
     public byte[] getSalt() {

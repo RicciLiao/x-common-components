@@ -18,4 +18,10 @@ public final class RandomGenerator {
         return new SecureRandom().nextInt((max - min) + 1) + min;
     }
 
+    public static byte[] nextBytes(byte[] bytes) {
+        new SecureRandom().nextBytes(bytes);
+
+        return bytes;
+    }
+
 }
