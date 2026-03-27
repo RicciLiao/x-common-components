@@ -23,7 +23,9 @@ import ricciliao.x.component.payload.response.code.SecondaryCode;
 import ricciliao.x.component.payload.response.code.impl.ResponseCodeEnum;
 import ricciliao.x.component.payload.response.code.impl.SecondaryCodeEnum;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Objects;
 
@@ -40,6 +42,21 @@ public class ResponseHttpMessageConverter extends AbstractGenericHttpMessageConv
     protected boolean supports(@Nonnull Class<?> clazz) {
 
         return Response.class.isAssignableFrom(clazz);
+    }
+
+    @Override
+    public boolean canRead(@Nonnull Type type, @Nullable Class<?> contextClass, @Nullable MediaType mediaType) {
+        if (type instanceof ParameterizedType pType) {
+            if (pType.getRawType().equals(Response.class)) {
+
+                return super.canRead(type, contextClass, mediaType);
+            } else {
+
+                return false;
+            }
+        }
+
+        return super.canRead(type, contextClass, mediaType);
     }
 
     @Override

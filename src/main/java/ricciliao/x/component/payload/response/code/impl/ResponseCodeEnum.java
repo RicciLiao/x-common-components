@@ -7,11 +7,10 @@ import ricciliao.x.component.payload.response.code.SecondaryCode;
 
 public enum ResponseCodeEnum implements ResponseCode {
     SUCCESS(PrimaryCodeEnum.SUCCESS, SecondaryCodeEnum.BLANK),
+    DATA_WARNING(PrimaryCodeEnum.DATA_WARNING, SecondaryCodeEnum.BLANK),
+    PARAMETER_WARNING(PrimaryCodeEnum.PARAMETER_WARNING, SecondaryCodeEnum.BLANK),
+    REST_WARNING(PrimaryCodeEnum.REST_WARNING, SecondaryCodeEnum.BLANK),
     SECURITY_ERROR(PrimaryCodeEnum.SECURITY_ERROR, SecondaryCodeEnum.BLANK),
-    PARAMETER_ERROR(PrimaryCodeEnum.PARAMETER_ERROR, SecondaryCodeEnum.BLANK),
-    CONCURRENT_ERROR(PrimaryCodeEnum.CONCURRENT_ERROR, SecondaryCodeEnum.BLANK),
-    REST_ERROR(PrimaryCodeEnum.REST_ERROR, SecondaryCodeEnum.BLANK),
-    DATA_ERROR(PrimaryCodeEnum.DATA_ERROR, SecondaryCodeEnum.BLANK),
     UNEXPECTED_ERROR(PrimaryCodeEnum.UNEXPECTED_ERROR, SecondaryCodeEnum.BLANK),
     ;
 

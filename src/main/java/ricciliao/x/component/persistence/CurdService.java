@@ -5,6 +5,7 @@ import jakarta.annotation.Nullable;
 import ricciliao.x.component.exception.AbstractException;
 
 import java.io.Serializable;
+import java.util.List;
 
 public interface CurdService<T extends Serializable> {
 
@@ -16,5 +17,7 @@ public interface CurdService<T extends Serializable> {
     T get(Long id) throws AbstractException;
 
     Long delete(@Nonnull T t) throws AbstractException;
+
+    boolean upsert(@Nonnull List<T> tList) throws AbstractException;
 
 }

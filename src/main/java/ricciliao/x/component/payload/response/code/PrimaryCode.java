@@ -24,10 +24,10 @@ public interface PrimaryCode extends CodeLevel {
         };
     }
 
-    // 协变返回类型(Covariant Return Type) CodeLevel ---> PrimaryCode
     @Override
     default PrimaryCode format(Object... args) {
+        CodeLevel code = CodeLevel.super.format(args);
 
-        return (PrimaryCode) CodeLevel.super.format(args);
+        return PrimaryCode.of(code.getId(), code.getMessage());
     }
 }

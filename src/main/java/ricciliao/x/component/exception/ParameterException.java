@@ -32,7 +32,7 @@ public class ParameterException extends AbstractException {
     @Override
     public PrimaryCode getPrimaryCode() {
 
-        return PrimaryCodeEnum.PARAMETER_ERROR;
+        return PrimaryCodeEnum.PARAMETER_WARNING;
     }
 
     public SimplePayloadData.Collection<SimplePayloadData.FieldViolation> getCollection() {

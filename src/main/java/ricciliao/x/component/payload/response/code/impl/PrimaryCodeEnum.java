@@ -5,13 +5,11 @@ import ricciliao.x.component.payload.response.code.PrimaryCode;
 
 public enum PrimaryCodeEnum implements PrimaryCode {
 
-    SUCCESS(0, "Success"),
-    SECURITY_ERROR(1, "Security error."),
-    PARAMETER_ERROR(2, "Parameter error"),
-    CONCURRENT_ERROR(3, "Concurrent error"),
-    REST_ERROR(4, "Rest Call error"),
-    DATA_ERROR(5, "Data error"),
-    DUPLICATE_ERROR(6, "Duplicate error"),
+    SUCCESS(0, "Success."),
+    DATA_WARNING(1, "Data warning."),
+    PARAMETER_WARNING(2, "Parameter warning."),
+    REST_WARNING(3, "Rest Call warning."),
+    SECURITY_ERROR(8, "Security error."),
     UNEXPECTED_ERROR(9, "Unexpected error."),
     ;
 

@@ -19,6 +19,6 @@ public class DataException extends AbstractException {
     @Override
     public PrimaryCode getPrimaryCode() {
 
-        return PrimaryCodeEnum.DATA_ERROR;
+        return PrimaryCodeEnum.DATA_WARNING;
     }
 }
