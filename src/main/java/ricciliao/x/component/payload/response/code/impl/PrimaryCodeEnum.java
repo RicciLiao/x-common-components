@@ -9,8 +9,8 @@ public enum PrimaryCodeEnum implements PrimaryCode {
     DATA_WARNING(1, "Data warning."),
     PARAMETER_WARNING(2, "Parameter warning."),
     REST_WARNING(3, "Rest Call warning."),
-    SECURITY_ERROR(8, "Security error."),
-    UNEXPECTED_ERROR(9, "Unexpected error."),
+    SECURITY_ERROR(4, "Security error."),
+    UNEXPECTED_ERROR(99, "Unexpected error."),
     ;
 
     private final int id;

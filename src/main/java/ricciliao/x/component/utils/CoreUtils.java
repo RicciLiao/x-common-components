@@ -38,17 +38,4 @@ public class CoreUtils {
         return yamlPropertiesReader.getProperty(propsPrefix.value(), propsClass);
     }
 
-    public char[] getAesKeyAsHexChars(byte[] bytes) {
-        char[] hexChars = new char[bytes.length * 2];
-        char[] hexDigits = "0123456789abcdef".toCharArray();
-
-        for (int i = 0; i < bytes.length; i++) {
-            int v = bytes[i] & 0xFF;
-            hexChars[i * 2] = hexDigits[v >>> 4];
-            hexChars[i * 2 + 1] = hexDigits[v & 0x0F];
-        }
-
-        return hexChars;
-    }
-
 }

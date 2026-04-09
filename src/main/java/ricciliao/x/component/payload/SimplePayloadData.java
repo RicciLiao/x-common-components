@@ -31,11 +31,6 @@ public interface SimplePayloadData extends PayloadData {
     }
 
     record Collection<T extends PayloadData>(List<T> data) implements SimplePayloadData {
-
-        public static <T extends PayloadData> Collection<T> data(List<T> data) {
-
-            return new Collection<>(data);
-        }
     }
 
     record Bool(boolean data) implements SimplePayloadData {

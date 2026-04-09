@@ -7,7 +7,7 @@ import ricciliao.x.component.exception.AbstractException;
 import java.io.Serializable;
 import java.util.List;
 
-public interface CurdService<T extends Serializable> {
+public interface CrudService<T extends Serializable> {
 
     Long insert(@Nonnull T t) throws AbstractException;
 

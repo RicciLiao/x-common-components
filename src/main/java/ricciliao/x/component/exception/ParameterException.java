@@ -21,12 +21,12 @@ public class ParameterException extends AbstractException {
     public ParameterException(@Nonnull SecondaryCode secondaryCode,
                               List<SimplePayloadData.FieldViolation> list) {
         super(secondaryCode);
-        this.collection = SimplePayloadData.Collection.data(list);
+        this.collection = SimplePayloadData.of(list);
     }
 
     public ParameterException(@Nonnull SecondaryCode secondaryCode) {
         super(secondaryCode);
-        this.collection = SimplePayloadData.Collection.data(Collections.emptyList());
+        this.collection = SimplePayloadData.of(Collections.emptyList());
     }
 
     @Override

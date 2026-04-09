@@ -15,22 +15,24 @@ public class RetryExecutorsImpl implements RetryExecutors {
     @Override
     public <T, Z> T executor(Z z, RetryJob<T, Z> restTask, RetrySelector<T> retrySelector, RetrySelector.RetryMeta retryMeta) throws UnexpectedException {
         RetryResult<T> retryResult = new RetryResult<>();
-        while (true) {
+        boolean shouldRetry = true;
+        
+        do {
             try {
                 retryResult.clear();
                 retryResult.setResult(restTask.executor(z));
             } catch (Exception e) {
                 retryResult.setException(new UnexpectedException(SecondaryCodeEnum.BLANK, e));
             }
-            if (Objects.isNull(retrySelector) || !retrySelector.retry(retrySelector, retryResult, retryMeta)) {
-                if (Objects.nonNull(retryResult.getException())) {
-
-                    throw retryResult.getException();
-                }
-
-                return retryResult.getResult();
-            }
+            
+            shouldRetry = Objects.nonNull(retrySelector) && retrySelector.retry(retrySelector, retryResult, retryMeta);
+        } while (shouldRetry);
+        
+        if (Objects.nonNull(retryResult.getException())) {
+            throw retryResult.getException();
         }
+
+        return retryResult.getResult();
     }
 
 }

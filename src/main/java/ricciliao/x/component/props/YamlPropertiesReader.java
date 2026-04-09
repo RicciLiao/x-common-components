@@ -18,18 +18,22 @@ import java.util.regex.Pattern;
 
 public class YamlPropertiesReader {
 
+    private static final ObjectMapper OBJECT_MAPPER;
+    private static final Pattern CAMEL_CASE_PATTERN;
+    
+    static {
+        OBJECT_MAPPER = new ObjectMapper(new YAMLFactory());
+        OBJECT_MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        CAMEL_CASE_PATTERN = Pattern.compile("-(.)");
+    }
+
     private final Map<String, Object> properties;
-    private final ObjectMapper objectMapper;
 
     public YamlPropertiesReader(Resource resources) {
-        this.objectMapper = new ObjectMapper(new YAMLFactory());
-        this.objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         this.properties = readYaml(resources);
     }
 
     public YamlPropertiesReader() {
-        this.objectMapper = new ObjectMapper(new YAMLFactory());
-        this.objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         this.properties = readYaml(new ClassPathResource("application.yml"));
     }
 
@@ -45,13 +49,13 @@ public class YamlPropertiesReader {
             return null;
         }
 
-        return objectMapper.convertValue(value, tClass);
+        return OBJECT_MAPPER.convertValue(value, tClass);
     }
 
     private Map<String, Object> readYaml(Resource resource) {
         try {
 
-            return convertToCamelCase(objectMapper.readValue(resource.getInputStream(), new TypeReference<>() {
+            return convertToCamelCase(OBJECT_MAPPER.readValue(resource.getInputStream(), new TypeReference<>() {
             }));
 
         } catch (IOException e) {
@@ -77,8 +81,7 @@ public class YamlPropertiesReader {
     }
 
     private String toCamelCase(String key) {
-        Pattern pattern = Pattern.compile("-(.)");
-        Matcher matcher = pattern.matcher(key);
+        Matcher matcher = CAMEL_CASE_PATTERN.matcher(key);
         StringBuilder sb = new StringBuilder();
         while (matcher.find()) {
             matcher.appendReplacement(sb, matcher.group(1).toUpperCase());
@@ -95,7 +98,7 @@ public class YamlPropertiesReader {
             Object value = entry.getValue();
 
             if (value instanceof Map) {
-                value = convertToCamelCase(objectMapper.convertValue(value, new TypeReference<>() {
+                value = convertToCamelCase(OBJECT_MAPPER.convertValue(value, new TypeReference<>() {
                 }));
             } else if (value instanceof List) {
                 value = convertListToCamelCase((List<?>) value);
@@ -111,7 +114,7 @@ public class YamlPropertiesReader {
         List<Object> result = new ArrayList<>();
         for (Object item : list) {
             if (item instanceof Map) {
-                result.add(convertToCamelCase(objectMapper.convertValue(item, new TypeReference<>() {
+                result.add(convertToCamelCase(OBJECT_MAPPER.convertValue(item, new TypeReference<>() {
                 })));
             } else {
                 result.add(item);

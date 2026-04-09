@@ -7,35 +7,33 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
-public interface ResponseCode extends Serializable {
+public class ResponseCode implements Serializable {
+    @Serial
+    private static final long serialVersionUID = -7155703590971461602L;
+    private final PrimaryCode primaryCode;
+    private final SecondaryCode secondaryCode;
 
-    static ResponseCode of(PrimaryCode primaryCode, SecondaryCode secondaryCode) {
-
-        return new ResponseCode() {
-            @Serial
-            private static final long serialVersionUID = -8131353993254154406L;
-
-            @Override
-            public PrimaryCode getPrimary() {
-
-                return primaryCode;
-            }
-
-            @Override
-            public SecondaryCode getSecondary() {
-
-                return secondaryCode;
-            }
-        };
+    public ResponseCode(PrimaryCode primaryCode, SecondaryCode secondaryCode) {
+        this.primaryCode = primaryCode;
+        this.secondaryCode = secondaryCode;
     }
 
-    PrimaryCode getPrimary();
+    public PrimaryCode getPrimary() {
+        return primaryCode;
+    }
 
-    SecondaryCode getSecondary();
+    public SecondaryCode getSecondary() {
+        return secondaryCode;
+    }
 
-    default boolean isSecondaryBlank() {
+    public boolean isSecondaryBlank() {
 
         return Objects.isNull(this.getSecondary()) || this.getSecondary().getId() == SecondaryCodeEnum.BLANK.getId();
+    }
+
+    public static ResponseCode of(PrimaryCode primaryCode, SecondaryCode secondaryCode) {
+
+        return new ResponseCode(primaryCode, secondaryCode);
     }
 
 }
