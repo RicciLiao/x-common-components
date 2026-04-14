@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.core.GenericTypeResolver;
 import org.springframework.http.HttpInputMessage;
@@ -21,7 +22,6 @@ import ricciliao.x.component.payload.response.code.SimpleResponseCode;
 import ricciliao.x.component.payload.response.code.impl.PrimaryCodeEnum;
 import ricciliao.x.component.payload.response.code.impl.SecondaryCodeEnum;
 
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

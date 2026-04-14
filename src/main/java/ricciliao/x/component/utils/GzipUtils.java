@@ -33,10 +33,10 @@ public class GzipUtils {
         }
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
              ByteArrayInputStream in = new ByteArrayInputStream(Base64.getDecoder().decode(compressedStr));
-             GZIPInputStream ginzip = new GZIPInputStream(in)) {
+             GZIPInputStream gunzip = new GZIPInputStream(in)) {
             byte[] buffer = new byte[1024];
-            int offset = -1;
-            while ((offset = ginzip.read(buffer)) != -1) {
+            int offset;
+            while ((offset = gunzip.read(buffer)) != -1) {
                 out.write(buffer, 0, offset);
             }
 

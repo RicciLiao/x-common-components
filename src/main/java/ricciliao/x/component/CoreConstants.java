@@ -8,5 +8,6 @@ public class CoreConstants {
     public static final char DATA_ACTION_TYPE_DELETE = 'D';
     public static final char DATA_ACTION_TYPE_UPDATE = 'U';
     public static final char DATA_ACTION_TYPE_INSERT = 'I';
+    public static final String CONSUMER_ID = "consumer";
 
 }
