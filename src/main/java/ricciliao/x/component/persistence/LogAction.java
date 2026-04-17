@@ -7,7 +7,7 @@ import java.util.function.Function;
 
 public interface LogAction {
 
-    static <T extends LogPo> Op<T> insert(Instant instant) {
+    static <T extends LogEntity> Op<T> insert(Instant instant) {
 
         return t -> {
             t.setActionCd(CoreConstants.DATA_ACTION_TYPE_INSERT);
@@ -17,7 +17,7 @@ public interface LogAction {
         };
     }
 
-    static <T extends LogPo> Op<T> update(Instant instant) {
+    static <T extends LogEntity> Op<T> update(Instant instant) {
 
         return t -> {
             t.setActionCd(CoreConstants.DATA_ACTION_TYPE_UPDATE);
@@ -27,7 +27,7 @@ public interface LogAction {
         };
     }
 
-    static <T extends LogPo> Op<T> delete(Instant instant) {
+    static <T extends LogEntity> Op<T> delete(Instant instant) {
 
         return t -> {
             t.setActionCd(CoreConstants.DATA_ACTION_TYPE_DELETE);
@@ -38,7 +38,7 @@ public interface LogAction {
     }
 
     @FunctionalInterface
-    interface Op<T extends LogPo> extends Function<T, T> {
+    interface Op<T extends LogEntity> extends Function<T, T> {
 
     }
 

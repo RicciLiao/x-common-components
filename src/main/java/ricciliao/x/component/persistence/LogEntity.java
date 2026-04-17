@@ -3,7 +3,7 @@ package ricciliao.x.component.persistence;
 import java.io.Serializable;
 import java.time.Instant;
 
-public interface LogPo extends Serializable {
+public interface LogEntity extends Serializable {
 
     Instant getActionDtm();
 

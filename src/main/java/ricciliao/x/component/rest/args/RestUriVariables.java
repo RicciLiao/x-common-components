@@ -14,7 +14,7 @@ public interface RestUriVariables extends Serializable {
         Map<String, Object> uriVariables = new HashMap<>();
         this.toUriVariables(uriVariables);
 
-        UriComponentsBuilder ucb = UriComponentsBuilder.fromHttpUrl(props.getPath());
+        UriComponentsBuilder ucb = UriComponentsBuilder.fromUriString(props.getPath());
         ucb.uriVariables(uriVariables);
 
         return ucb.build();

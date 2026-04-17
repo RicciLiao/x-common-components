@@ -14,7 +14,7 @@ public interface RestQueryParams extends Serializable {
         MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
         this.toQueryParams(queryParams);
 
-        UriComponentsBuilder ucb = UriComponentsBuilder.fromHttpUrl(props.getPath());
+        UriComponentsBuilder ucb = UriComponentsBuilder.fromUriString(props.getPath());
         ucb.queryParams(queryParams);
 
         return ucb.build();

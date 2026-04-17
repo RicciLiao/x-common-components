@@ -3,7 +3,7 @@ package ricciliao.x.component.persistence;
 import java.io.Serializable;
 import java.time.Instant;
 
-public interface ModifiablePo extends Serializable {
+public interface ModifiableEntity extends Serializable {
 
     Instant getCreatedDtm();
 
@@ -13,6 +13,8 @@ public interface ModifiablePo extends Serializable {
 
     void setUpdatedDtm(Instant now);
 
+    Long getVersion();
 
+    void setVersion(Long version);
 
 }

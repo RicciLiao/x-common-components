@@ -1,7 +1,6 @@
 package ricciliao.x.component.rest;
 
 import org.springframework.http.HttpMethod;
-import org.springframework.web.util.UriComponentsBuilder;
 
 public class RestPathProperties {
 
@@ -22,11 +21,6 @@ public class RestPathProperties {
 
     public void setMethod(HttpMethodWrapper method) {
         this.method = new HttpMethodWrapper(method.name());
-    }
-
-    public UriComponentsBuilder toBuilder() {
-
-        return UriComponentsBuilder.fromHttpUrl(path);
     }
 
     public HttpMethod toHttpMethod() {

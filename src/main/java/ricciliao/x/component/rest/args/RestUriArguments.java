@@ -9,7 +9,7 @@ import ricciliao.x.component.rest.RestPathProperties;
 import java.util.HashMap;
 import java.util.Map;
 
-public interface RestArguments extends RestUriVariables, RestQueryParams {
+public interface RestUriArguments extends RestUriVariables, RestQueryParams {
 
     @Override
     default UriComponents toUriComponents(RestPathProperties props) {
@@ -18,7 +18,7 @@ public interface RestArguments extends RestUriVariables, RestQueryParams {
         this.toUriVariables(uriVariables);
         this.toQueryParams(queryParams);
 
-        UriComponentsBuilder ucb = UriComponentsBuilder.fromHttpUrl(props.getPath());
+        UriComponentsBuilder ucb = UriComponentsBuilder.fromUriString(props.getPath());
         ucb.uriVariables(uriVariables);
         ucb.queryParams(queryParams);
 
