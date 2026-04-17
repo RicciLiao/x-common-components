@@ -12,6 +12,8 @@ Please refer to `dependencies-control-center` for the version number.
 | org.apache.commons               | commons-collections4    | compile  |
 | jakarta.annotation               | jakarta.annotation-api  | compile  |
 | ricciliao.x                      | dynamic-aop-component   | compile  |
+| commons-validator                | commons-validator       | compile  |
+| org.bouncycastle                 | bcprov-jdk18on          | compile  |
 | org.springframework              | spring-web              | provided |
 | com.fasterxml.jackson.core       | jackson-databind        | provided |
 | com.fasterxml.jackson.dataformat | jackson-dataformat-yaml | provided |
@@ -19,3 +21,4 @@ Please refer to `dependencies-control-center` for the version number.
 | org.springframework.boot         | spring-boot             | provided |
 | org.springframework.kafka        | spring-kafka            | provided |
 | org.springframework              | spring-webmvc           | provided |
+| ricciliao.x                      | logging-api             | provided |
