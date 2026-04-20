@@ -24,8 +24,8 @@ public enum EncodeStrategy implements SecurityStrategy {
         return encoder.apply(this.getSecurityProvider(), input).encode();
     }
 
-    public boolean matches(byte[] input, String encoded) {
+    public boolean matches(byte[] plainInput, String encoded) {
 
-        return encoder.apply(this.getSecurityProvider(), input).matches(encoded);
+        return encoder.apply(this.getSecurityProvider(), plainInput).matches(encoded);
     }
 }
