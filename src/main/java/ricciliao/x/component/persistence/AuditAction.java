@@ -3,9 +3,9 @@ package ricciliao.x.component.persistence;
 import java.time.Instant;
 import java.util.function.Function;
 
-public interface ModifiableAction {
+public interface AuditAction {
 
-    static <T extends ModifiableEntity> Op<T> insert(Instant instant) {
+    static <T extends AuditSupport> Op<T> insert(Instant instant) {
 
         return t -> {
             t.setCreatedDtm(instant);
@@ -16,7 +16,7 @@ public interface ModifiableAction {
         };
     }
 
-    static <T extends ModifiableEntity> Op<T> update(Instant instant) {
+    static <T extends AuditSupport> Op<T> update(Instant instant) {
 
         return t -> {
             t.setUpdatedDtm(instant);
@@ -25,13 +25,13 @@ public interface ModifiableAction {
         };
     }
 
-    static <T extends ModifiableEntity> Op<T> delete(Instant instant) {
+    static <T extends AuditSupport> Op<T> delete(Instant instant) {
 
-        return ModifiableAction.update(instant);
+        return AuditAction.update(instant);
     }
 
     @FunctionalInterface
-    interface Op<T extends ModifiableEntity> extends Function<T, T> {
+    interface Op<T extends AuditSupport> extends Function<T, T> {
 
     }
 

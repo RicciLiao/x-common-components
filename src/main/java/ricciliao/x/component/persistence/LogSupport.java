@@ -1,13 +1,16 @@
 package ricciliao.x.component.persistence;
 
-import java.io.Serializable;
 import java.time.Instant;
 
-public interface LogEntity extends Serializable {
+public interface LogSupport extends AuditSupport {
 
     Instant getActionDtm();
 
     void setActionDtm(Instant actionDtm);
+
+    Long getActionBy();
+
+    void setActionBy(Long actionBy);
 
     Character getActionCd();
 
